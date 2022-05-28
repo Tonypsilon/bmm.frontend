@@ -8,14 +8,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './authentication/login/login.component';
+import { HomeComponent } from './home/home.component';
+import { SeasonComponent } from './season/season.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    SeasonComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,8 @@ import { LoginComponent } from './authentication/login/login.component';
     MatToolbarModule,
     MatCardModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
