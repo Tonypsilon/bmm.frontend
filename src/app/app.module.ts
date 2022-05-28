@@ -9,11 +9,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { NavigationComponent } from './navigation/navigation.component';
+import { LoginComponent } from './authentication/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent
+    NavigationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
