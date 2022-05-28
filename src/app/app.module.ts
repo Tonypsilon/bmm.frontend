@@ -13,6 +13,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SeasonComponent } from './season/season.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SeasonComponent } from './season/season.component';
     MatCardModule,
     MatMenuModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
