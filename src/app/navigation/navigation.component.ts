@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { SeasonNames } from './season-names';
+import { SeasonData } from '../season/season-data';
 
 @Component({
   selector: 'bmm-navigation',
@@ -16,7 +16,7 @@ export class NavigationComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<SeasonNames>(environment.apiUrl+'/season/allNonArchived').subscribe(res => this.seasonNames = res.seasonNames);
+    this.http.get<SeasonData[]>(environment.apiUrl+'/seasons').subscribe(res => this.seasonNames = res.map(season => season.name));
   }
 
 }
