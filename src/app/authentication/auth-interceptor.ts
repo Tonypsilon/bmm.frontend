@@ -14,6 +14,9 @@ export class AuthInterceptor implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    if (req.url.endsWith('/user')){
+      return next.handle(req);
+    }
     if(this.authenticationService.isLoggedIn) {
       const headers = req.headers.set('Cookie', 'JSESSIONID=' + this.authenticationService.jSessionId)
         .set('XSRF-TOKEN', '' + this.authenticationService.xsrfToken);
@@ -27,15 +30,9 @@ export class AuthInterceptor implements HttpInterceptor{
 
   handleErrorResponse(resp: HttpErrorResponse) {
     if(resp.status === 401 || resp.status === 403) {
-      if(this.authenticationService.loginOngoing) {
-        this.router.navigate(['/login', {loginOngoing : true}]);
-      } else {
-        this.router.navigate(['/login', {loginOngoing : false}]);
-        this.authenticationService.loginOngoing = true;
-      }
-
+      this.router.navigate(['/login']);
     }
-    return throwError(() => new Error('Login fehlgeschlagen!'));
+    return throwError(() => new Error('Nicht authorisiert!'));
   }
 
 }

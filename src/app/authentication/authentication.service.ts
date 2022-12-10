@@ -9,7 +9,6 @@ export class AuthenticationService {
   private _seasons: string[] = [];
   private _teams: string[] = [];
   private _isLoggedIn: boolean = false;
-  private _loginOngoing: boolean = false;
   private _isSeasonAdmin: boolean = false;
   private _isClubAdmin: boolean = false;
   private _isTeamAdmin: boolean = false;
@@ -46,13 +45,6 @@ export class AuthenticationService {
   }
   public set isLoggedIn(value: boolean) {
     this._isLoggedIn = value;
-  }
-
-  public get loginOngoing(): boolean {
-    return this._loginOngoing;
-  }
-  public set loginOngoing(value: boolean) {
-    this._loginOngoing = value;
   }
 
   public get isSeasonAdmin(): boolean {
