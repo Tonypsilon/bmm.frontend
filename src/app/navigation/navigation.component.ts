@@ -16,7 +16,8 @@ export class NavigationComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<SeasonData[]>(environment.apiUrl+'/seasons').subscribe(res => this.seasonNames = res.map(season => season.name));
+    this.http.get<SeasonData[]>(environment.apiUrl+'/seasons').subscribe(
+      res => this.seasonNames = res.map(season => season.name));
   }
 
 }

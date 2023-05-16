@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { catchError, Observable, throwError } from "rxjs";
-import { AuthenticationService } from "./authentication.service";
+import { AuthenticationService } from "../shared/authentication.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor{
@@ -17,11 +17,10 @@ export class AuthInterceptor implements HttpInterceptor{
     if (req.url.endsWith('/user')){
       return next.handle(req);
     }
-    if(this.authenticationService.isLoggedIn) {
-      const headers = req.headers.set('Cookie', 'JSESSIONID=' + this.authenticationService.jSessionId)
-        .set('XSRF-TOKEN', '' + this.authenticationService.xsrfToken);
-      req = req.clone({headers});
-    }
+
+    const headers = req.headers.set('Cookie', 'JSESSIONID=' + this.authenticationService.jSessionId)
+      .set('XSRF-TOKEN', '' + this.authenticationService.xsrfToken);
+    req = req.clone({headers});
 
     return next.handle(req).pipe(
       catchError( resp => this.handleErrorResponse(resp))
