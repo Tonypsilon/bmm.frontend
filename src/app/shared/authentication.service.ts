@@ -22,7 +22,7 @@ export class AuthenticationService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': 'Basic ' + btoa('username:password')
+        'Authorization': 'Basic ' + btoa(username + ':' + password)
       })
     }
 

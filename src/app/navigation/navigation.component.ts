@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { SeasonData } from '../season/season-data';
+import { SeasonData } from '../shared/season-data';
 
 @Component({
   selector: 'bmm-navigation',

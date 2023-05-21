@@ -17,6 +17,7 @@ import { SeasonComponent } from './season/season.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './authentication/auth-interceptor';
+import { XhrInterceptor } from './xhr.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,10 @@ import { AuthInterceptor } from './authentication/auth-interceptor';
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
+    multi: true
+  }, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: XhrInterceptor,
     multi: true
   }],
   bootstrap: [AppComponent]

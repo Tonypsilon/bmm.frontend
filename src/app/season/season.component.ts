@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SeasonData } from './season-data';
+import { SeasonData } from '../shared/season-data';
 
 @Component({
   selector: 'bmm-season',
