@@ -18,6 +18,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './authentication/auth-interceptor';
 import { XhrInterceptor } from './xhr.interceptor';
+import { SeasonCreateComponent } from './season/admin/season-create/season-create.component';
+import { SeasonFormComponent } from './season/admin/season-form/season-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { XhrInterceptor } from './xhr.interceptor';
     NavigationComponent,
     LoginComponent,
     HomeComponent,
-    SeasonComponent
+    SeasonComponent,
+    SeasonCreateComponent,
+    SeasonFormComponent
   ],
   imports: [
     BrowserModule,

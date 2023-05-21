@@ -13,16 +13,20 @@ export class AuthInterceptor implements HttpInterceptor{
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    if (req.url.endsWith('/user')){
-      return next.handle(req);
+    var modifiedRequest = req;
+    if(this.authenticationService.jSessionId) {
+      modifiedRequest = modifiedRequest.clone({
+        headers: modifiedRequest.headers.set('Cookie', 'JSESSIONID=' + this.authenticationService.jSessionId)
+      });
+    }
+    if(this.authenticationService.xsrfToken) {
+      modifiedRequest = modifiedRequest.clone({
+        headers: modifiedRequest.headers.set('Cookie', 'XSRF-TOKEN=' + this.authenticationService.xsrfToken)
+        .set('XSRF-TOKEN', '' + this.authenticationService.xsrfToken)
+      });
     }
 
-    const headers = req.headers.set('Cookie', 'JSESSIONID=' + this.authenticationService.jSessionId)
-      .set('XSRF-TOKEN', '' + this.authenticationService.xsrfToken);
-    req = req.clone({headers});
-
-    return next.handle(req).pipe(
+    return next.handle(modifiedRequest).pipe(
       catchError( resp => this.handleErrorResponse(resp))
     );
   }

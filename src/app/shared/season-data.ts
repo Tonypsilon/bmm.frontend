@@ -1,5 +1,5 @@
 export interface SeasonData {
-  id: number;
+  id?: number;
   name: string;
-  stage: string;
+  stage?: string;
 }
