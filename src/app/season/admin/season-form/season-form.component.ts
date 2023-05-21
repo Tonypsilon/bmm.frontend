@@ -1,6 +1,5 @@
-import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, Input, OnChanges, EventEmitter, Output } from '@angular/core';
 import { SeasonData } from 'src/app/shared/season-data';
-import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'bmm-season-form',

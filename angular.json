@@ -102,5 +102,7 @@
       }
     }
   },
-  "defaultProject": "bmm-frontend"
+  "cli": {
+    "analytics": false
+  }
 }
