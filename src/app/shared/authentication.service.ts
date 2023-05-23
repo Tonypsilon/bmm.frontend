@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AuthenticationData } from './authentication-data';
-import { Observable, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,9 @@ export class AuthenticationService {
 
   private _authenticationData$ = new ReplaySubject<AuthenticationData>(1);
   readonly _authenticationData = this._authenticationData$.asObservable();
+
+  private _isAuthenticated$ = new BehaviorSubject(false);
+  readonly isAuthenticated$ = this._isAuthenticated$.asObservable();
 
   private _jSessionId?: string | undefined;
   private _xsrfToken?: string | undefined;
@@ -27,8 +30,15 @@ export class AuthenticationService {
     }
 
     this.http.get<AuthenticationData>(environment.apiUrl + '/user', httpOptions).subscribe(
-      res => this._authenticationData$.next(res)
-    );
+      res => {
+        this._authenticationData$.next(res);
+        this._isAuthenticated$.next(true);
+      });
+  }
+
+  logout() {
+    this._isAuthenticated$.next(false);
+    this._jSessionId = undefined;
   }
 
   getAuthenticationData(): Observable<AuthenticationData> {
@@ -47,5 +57,9 @@ export class AuthenticationService {
   }
   public set xsrfToken(value: string | undefined) {
     this._xsrfToken = value;
+  }
+
+  get isAuthenticated() {
+    return this._isAuthenticated$.value;
   }
 }

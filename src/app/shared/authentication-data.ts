@@ -3,7 +3,8 @@ import { SeasonData } from "./season-data";
 import { TeamData } from "./team-data";
 
 export interface AuthenticationData {
-  username: String;
+  username: string;
+  isAdmin: boolean;
   seasons: SeasonData[];
   clubs: ClubData[];
   teams: TeamData[];
