@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8080',
-  protectedApiUrl: 'http://localhost:8080/admin'
+  apiUrl: '//localhost:8080',
+  protectedApiUrl: '//localhost:8080/admin'
 };

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { AuthenticationData } from '../../shared/authentication-data';
-import { environment } from 'src/environments/environment';
 import { AuthenticationService } from 'src/app/shared/authentication.service';
 
 @Component({
@@ -14,8 +11,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!: UntypedFormGroup;
 
-  constructor(private http: HttpClient,
-    private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.loginForm = new UntypedFormGroup({

@@ -15,10 +15,6 @@ export class AuthenticationService {
   private _isAuthenticated$ = new BehaviorSubject(false);
   readonly isAuthenticated$ = this._isAuthenticated$.asObservable();
 
-  private _jSessionId?: string | undefined;
-  private _xsrfToken?: string | undefined;
-
-
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): void {
@@ -38,25 +34,10 @@ export class AuthenticationService {
 
   logout() {
     this._isAuthenticated$.next(false);
-    this._jSessionId = undefined;
   }
 
   getAuthenticationData(): Observable<AuthenticationData> {
     return this._authenticationData;
-  }
-
-  public get jSessionId(): string | undefined {
-    return this._jSessionId;
-  }
-  public set jSessionId(value: string | undefined) {
-    this._jSessionId = value;
-  }
-
-  public get xsrfToken(): string | undefined {
-    return this._xsrfToken;
-  }
-  public set xsrfToken(value: string | undefined) {
-    this._xsrfToken = value;
   }
 
   get isAuthenticated() {

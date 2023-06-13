@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpXsrfTokenExtractor } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { catchError, Observable, throwError } from "rxjs";
@@ -8,25 +8,24 @@ import { AuthenticationService } from "../shared/authentication.service";
 export class AuthInterceptor implements HttpInterceptor{
 
   constructor(private authenticationService: AuthenticationService,
-    private router: Router) {
-
+    private router: Router,
+    private tokenExtractor: HttpXsrfTokenExtractor) {
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    var modifiedRequest = req;
-    if(this.authenticationService.jSessionId) {
-      modifiedRequest = modifiedRequest.clone({
-        headers: modifiedRequest.headers.set('Cookie', 'JSESSIONID=' + this.authenticationService.jSessionId)
-      });
-    }
-    if(this.authenticationService.xsrfToken) {
-      modifiedRequest = modifiedRequest.clone({
-        headers: modifiedRequest.headers.set('Cookie', 'XSRF-TOKEN=' + this.authenticationService.xsrfToken)
-        .set('XSRF-TOKEN', '' + this.authenticationService.xsrfToken)
-      });
-    }
+  cookieHeaderName = 'X-XSRF-TOKEN';
 
-    return next.handle(modifiedRequest).pipe(
+  /**
+   * Done as in common.http.xsrf.ts from Angular
+   */
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    req = req.clone({withCredentials: true});
+    if(req.method != 'GET' && req.method != 'HEAD') {
+      let xsrfToken = this.tokenExtractor.getToken() as string;
+      if(xsrfToken != null && !req.headers.has(this.cookieHeaderName)) {
+        req = req.clone({headers: req.headers.set(this.cookieHeaderName, xsrfToken)});
+      }
+    }
+    return next.handle(req).pipe(
       catchError( resp => this.handleErrorResponse(resp))
     );
   }

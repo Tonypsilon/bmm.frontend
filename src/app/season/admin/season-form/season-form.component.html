@@ -1,1 +1,11 @@
-<p>season-form works!</p>
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <p>
+    <mat-form-field>
+      <mat-label>Saisonname</mat-label>
+      <input matInput formControlName="name" type="text">
+    </mat-form-field>
+  </p>
+  <button mat-raised-button color="primary" type="submit">OK</button>
+</form>
+
+

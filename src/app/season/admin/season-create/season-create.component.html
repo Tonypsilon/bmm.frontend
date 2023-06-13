@@ -1,1 +1,8 @@
-<p>season-create works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Saison erstellen</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <bmm-season-form (submitSeason)="create($event)"></bmm-season-form>
+  </mat-card-content>
+</mat-card>
