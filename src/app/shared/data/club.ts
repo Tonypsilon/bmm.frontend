@@ -1,4 +1,4 @@
-export interface ClubData {
+export interface Club {
   id: number;
   name: string;
   zps: number;

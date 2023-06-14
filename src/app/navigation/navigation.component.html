@@ -6,5 +6,5 @@
   </mat-menu>
   <span class="spacer"></span>
   <button [routerLink]="['login']" mat-flat-button color="primary" *ngIf="!isAuthenticated"><mat-icon>login</mat-icon> Login</button>
-  <button mat-flat-button *ngIf="isAuthenticated" color="primary"><mat-icon>logout</mat-icon> Logout</button>
+  <button [routerLink]="['login']" (click)="logout()" mat-flat-button *ngIf="isAuthenticated" color="primary"><mat-icon>logout</mat-icon> Logout</button>
 </mat-toolbar>

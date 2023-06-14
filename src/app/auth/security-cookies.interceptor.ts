@@ -1,16 +1,20 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpXsrfTokenExtractor } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
-import { catchError, Observable, throwError } from "rxjs";
-import { AuthenticationService } from "../shared/authentication.service";
+import { Injectable } from '@angular/core';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HttpXsrfTokenExtractor,
+  HttpErrorResponse
+} from '@angular/common/http';
+import { Observable, catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor{
+export class SecurityCookiesInterceptor implements HttpInterceptor {
 
-  constructor(private authenticationService: AuthenticationService,
-    private router: Router,
-    private tokenExtractor: HttpXsrfTokenExtractor) {
-  }
+  constructor(private router: Router,
+    private tokenExtractor: HttpXsrfTokenExtractor) {}
 
   cookieHeaderName = 'X-XSRF-TOKEN';
 
@@ -26,7 +30,7 @@ export class AuthInterceptor implements HttpInterceptor{
       }
     }
     return next.handle(req).pipe(
-      catchError( resp => this.handleErrorResponse(resp))
+      catchError(resp => this.handleErrorResponse(resp))
     );
   }
 
@@ -36,5 +40,4 @@ export class AuthInterceptor implements HttpInterceptor{
     }
     return throwError(() => new Error('Nicht authorisiert!'));
   }
-
 }

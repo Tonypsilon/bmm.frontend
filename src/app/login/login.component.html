@@ -5,12 +5,13 @@
   <mat-card-content>
     <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
       <p>
-        <mat-form-field appearance="standard">
+        <mat-form-field>
           <mat-label>Benutzername</mat-label>
           <input matInput formControlName="username" type="text">
         </mat-form-field>
       </p>
-      <p><mat-form-field appearance="standard">
+      <p>
+        <mat-form-field>
           <mat-label>Passwort</mat-label>
           <input matInput formControlName="password" type="password">
         </mat-form-field>

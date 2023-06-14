@@ -1,15 +1,16 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SeasonData } from 'src/app/shared/season-data';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Season } from 'src/app/shared/data/season';
 
 @Component({
   selector: 'bmm-season-form',
   templateUrl: './season-form.component.html',
-  styleUrls: ['./season-form.component.css']
+  styleUrls: ['./season-form.component.scss']
 })
 export class SeasonFormComponent implements OnInit {
-  @Input() season?: SeasonData;
-  @Output() submitSeason = new EventEmitter<SeasonData>();
+
+  @Input() season?: Season;
+  @Output() submitSeason = new EventEmitter<Season>();
   form = new FormGroup({
     name: new FormControl('', {
       nonNullable: true,
@@ -17,17 +18,15 @@ export class SeasonFormComponent implements OnInit {
     })
   });
 
-
   ngOnInit(): void {
   }
 
   submitForm() {
     const formValue = this.form.getRawValue();
-    const newSeason: SeasonData = {
+    const newSeason: Season = {
       ...formValue
     }
     console.log(newSeason);
     this.submitSeason.emit(newSeason);
   }
-
 }

@@ -1,21 +1,22 @@
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { AuthenticationData } from './authentication-data';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
+import { Authentication } from './data/authentication';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private _authenticationData$ = new ReplaySubject<AuthenticationData>(1);
+  private _authenticationData$ = new ReplaySubject<Authentication>(1);
   readonly _authenticationData = this._authenticationData$.asObservable();
 
   private _isAuthenticated$ = new BehaviorSubject(false);
   readonly isAuthenticated$ = this._isAuthenticated$.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private router: Router) { }
 
   login(username: string, password: string): void {
 
@@ -25,18 +26,26 @@ export class AuthenticationService {
       })
     }
 
-    this.http.get<AuthenticationData>(environment.apiUrl + '/user', httpOptions).subscribe(
+    this.http.get<Authentication>('//localhost:8080/user', httpOptions).subscribe(
       res => {
-        this._authenticationData$.next(res);
-        this._isAuthenticated$.next(true);
+        if(res.username === username) {
+          this._authenticationData$.next(res);
+          this._isAuthenticated$.next(true);
+          this.router.navigate(['/admin/home']);
+        }
       });
   }
 
   logout() {
-    this._isAuthenticated$.next(false);
+    this.http.post('logout', {}).subscribe(
+      res => {
+        this._isAuthenticated$.next(false);
+      }
+    )
+
   }
 
-  getAuthenticationData(): Observable<AuthenticationData> {
+  getAuthenticationData(): Observable<Authentication> {
     return this._authenticationData;
   }
 
