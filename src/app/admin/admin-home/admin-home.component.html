@@ -2,19 +2,43 @@
   <mat-card-header>
     <mat-card-title>Administration</mat-card-title>
   </mat-card-header>
+  <br>
   <mat-card-content>
-    <bmm-user></bmm-user>
-  </mat-card-content>
-  <mat-card-content>
-    <bmm-season-admin></bmm-season-admin>
-  </mat-card-content>
-  <mat-card-content>
-    <bmm-club-admin></bmm-club-admin>
-  </mat-card-content>
-  <mat-card-content>
-    <bmm-organization-admin></bmm-organization-admin>
-  </mat-card-content>
-  <mat-card-content>
-    <bmm-team-admin></bmm-team-admin>
+    <div *ngIf="true">
+      <mat-card>
+        <bmm-user></bmm-user>
+      </mat-card>
+      <br>
+    </div>
+    <div *ngIf="true">
+      <mat-card>
+        <bmm-admin></bmm-admin>
+      </mat-card>
+      <br>
+    </div>
+    <div *ngIf="true">
+      <mat-card>
+        <bmm-season-admin></bmm-season-admin>
+      </mat-card>
+      <br>
+    </div>
+    <div *ngIf="true">
+      <mat-card>
+        <bmm-club-admin></bmm-club-admin>
+      </mat-card>
+      <br>
+    </div>
+    <div *ngIf="true">
+      <mat-card>
+        <bmm-organization-admin></bmm-organization-admin>
+      </mat-card>
+      <br>
+    </div>
+    <div *ngIf="true">
+      <mat-card>
+        <bmm-team-admin></bmm-team-admin>
+      </mat-card>
+      <br>
+    </div>
   </mat-card-content>
 </mat-card>
