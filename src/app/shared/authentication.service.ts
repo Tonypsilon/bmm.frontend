@@ -37,12 +37,12 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.http.post('logout', {}).subscribe(
+    /*this.http.post('logout', {}).subscribe(
       res => {
         this._isAuthenticated$.next(false);
       }
-    )
-
+    )*/
+    this._isAuthenticated$.next(false);
   }
 
   getAuthenticationData(): Observable<Authentication> {

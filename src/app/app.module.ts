@@ -20,6 +20,13 @@ import { HomeComponent } from './home/home.component';
 import { SeasonFormComponent } from './season/admin/season-form/season-form.component';
 import { SeasonCreateComponent } from './season/admin/season-create/season-create.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { ErrorHandlerInterceptor } from './error-handler.interceptor';
+import { AdminComponent } from './admin/admin/admin.component';
+import { UserComponent } from './admin/user/user.component';
+import { SeasonAdminComponent } from './admin/season-admin/season-admin.component';
+import { ClubAdminComponent } from './admin/club-admin/club-admin.component';
+import { TeamAdminComponent } from './admin/team-admin/team-admin.component';
+import { OrganizationAdminComponent } from './admin/organization-admin/organization-admin.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +36,13 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
     HomeComponent,
     SeasonFormComponent,
     SeasonCreateComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    AdminComponent,
+    UserComponent,
+    SeasonAdminComponent,
+    ClubAdminComponent,
+    TeamAdminComponent,
+    OrganizationAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +66,11 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: XhrInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
       multi: true
     }
   ],

@@ -3,6 +3,18 @@
     <mat-card-title>Administration</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <button [routerLink]="['/admin/create-season']" mat-flat-button color="primary" *ngIf="true">Saison erstellen</button>
+    <bmm-user></bmm-user>
+  </mat-card-content>
+  <mat-card-content>
+    <bmm-season-admin></bmm-season-admin>
+  </mat-card-content>
+  <mat-card-content>
+    <bmm-club-admin></bmm-club-admin>
+  </mat-card-content>
+  <mat-card-content>
+    <bmm-organization-admin></bmm-organization-admin>
+  </mat-card-content>
+  <mat-card-content>
+    <bmm-team-admin></bmm-team-admin>
   </mat-card-content>
 </mat-card>

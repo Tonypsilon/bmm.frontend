@@ -29,15 +29,7 @@ export class SecurityCookiesInterceptor implements HttpInterceptor {
         req = req.clone({headers: req.headers.set(this.cookieHeaderName, xsrfToken)});
       }
     }
-    return next.handle(req).pipe(
-      catchError(resp => this.handleErrorResponse(resp))
-    );
+    return next.handle(req);
   }
 
-  handleErrorResponse(resp: HttpErrorResponse) {
-    if(resp.status === 401 || resp.status === 403) {
-      this.router.navigate(['/login']);
-    }
-    return throwError(() => new Error('Nicht authorisiert!'));
-  }
 }
