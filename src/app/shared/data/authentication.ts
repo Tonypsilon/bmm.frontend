@@ -1,11 +1,9 @@
-import { Club } from "./club";
-import { Season } from "./season";
-import { Team } from "./team";
+import { IdAndLabel } from "./id-and-label";
 
 export interface Authentication {
   username: string;
   isAdmin: boolean;
-  seasons: Season[];
-  clubs: Club[];
-  teams: Team[];
+  seasons: IdAndLabel[];
+  clubs: IdAndLabel[];
+  teams: IdAndLabel[];
 }
