@@ -1,0 +1,25 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+    <mat-form-field>
+      <mat-label>Benutzername</mat-label>
+      <input matInput formControlName="name" type="text">
+    </mat-form-field>
+    <br>
+    <div formGroupName = password>
+      <mat-form-field>
+        <mat-label>Passwort</mat-label>
+        <input matInput formControlName="password1" type="password">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Passwort bestätigen</mat-label>
+        <input matInput formControlName="password2" type="password">
+      </mat-form-field>
+    </div>
+    <br>
+    <mat-form-field>
+      <mat-label>Rollen</mat-label>
+      <mat-select formControlName="roles" multiple>
+        <mat-option *ngFor="let role of availableRoles" [value]="role">{{role}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">OK</button>
+</form>

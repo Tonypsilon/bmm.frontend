@@ -1,6 +1,6 @@
 export enum Role {
   ADMIN,
-  SEAON_ADMIN,
+  SEASON_ADMIN,
   CLUB_ADMIN,
   TEAM_ADMIN
 }

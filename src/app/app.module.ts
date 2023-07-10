@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,6 +28,8 @@ import { SeasonAdminComponent } from './admin/season-admin/season-admin.componen
 import { ClubAdminComponent } from './admin/club-admin/club-admin.component';
 import { TeamAdminComponent } from './admin/team-admin/team-admin.component';
 import { OrganizationAdminComponent } from './admin/organization-admin/organization-admin.component';
+import { UserCreateComponent } from './user/admin/user-create/user-create.component';
+import { UserFormComponent } from './user/admin/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import { OrganizationAdminComponent } from './admin/organization-admin/organizat
     SeasonAdminComponent,
     ClubAdminComponent,
     TeamAdminComponent,
-    OrganizationAdminComponent
+    OrganizationAdminComponent,
+    UserCreateComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +59,7 @@ import { OrganizationAdminComponent } from './admin/organization-admin/organizat
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatSelectModule,
     HttpClientModule,
     ReactiveFormsModule
   ],
