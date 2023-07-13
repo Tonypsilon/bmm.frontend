@@ -30,6 +30,8 @@ import { TeamAdminComponent } from './admin/team-admin/team-admin.component';
 import { OrganizationAdminComponent } from './admin/organization-admin/organization-admin.component';
 import { UserCreateComponent } from './user/admin/user-create/user-create.component';
 import { UserFormComponent } from './user/admin/user-form/user-form.component';
+import { ChangePasswordComponent } from './user/admin/change-password/change-password.component';
+import { ChangePasswordFormComponent } from './user/admin/change-password-form/change-password-form.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { UserFormComponent } from './user/admin/user-form/user-form.component';
     TeamAdminComponent,
     OrganizationAdminComponent,
     UserCreateComponent,
-    UserFormComponent
+    UserFormComponent,
+    ChangePasswordComponent,
+    ChangePasswordFormComponent
   ],
   imports: [
     BrowserModule,

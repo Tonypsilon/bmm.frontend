@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit {
   seasonNames: string[] = [];
 
   constructor(private http: HttpClient,
-    private authSercie: AuthenticationService) {
+    private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -23,13 +23,13 @@ export class NavigationComponent implements OnInit {
       res => this.seasonNames = res.map(season => season.name)
     );
 
-    this.authSercie.isAuthenticated$.subscribe(
+    this.authService.isAuthenticated$.subscribe(
       value => this.isAuthenticated = value
     );
   }
 
   logout(): void {
-    this.authSercie.logout();
+    this.authService.logout();
   }
 
 }
