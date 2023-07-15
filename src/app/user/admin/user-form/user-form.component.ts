@@ -28,10 +28,6 @@ export class UserFormComponent implements OnInit {
         nonNullable: true,
         validators: Validators.required
       })
-    }),
-    roles: new FormControl<Role[]>([], {
-      nonNullable: true,
-      validators: Validators.required
     })
   })
 
@@ -42,10 +38,9 @@ export class UserFormComponent implements OnInit {
     const formValue = this.form.getRawValue();
     if(formValue.password.password1 === formValue.password.password2) {
       const newUser: User = {
-      username : formValue.name,
-      password : formValue.password.password1,
-      roles: formValue.roles};
-
+        username : formValue.name,
+        password : formValue.password.password1
+      };
       console.log(newUser);
     this.submitUser.emit(newUser);
     } else {
