@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Season } from '../shared/data/season';
 import { AuthenticationService } from '../shared/authentication.service';
+import { SeasonService } from "../shared/season.service";
 
 @Component({
   selector: 'bmm-navigation',
@@ -15,11 +15,12 @@ export class NavigationComponent implements OnInit {
   seasonNames: string[] = [];
 
   constructor(private http: HttpClient,
-    private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private seasonService: SeasonService) {
   }
 
   ngOnInit(): void {
-    this.http.get<Season[]>('//localhost:8080/seasons').subscribe(
+    this.seasonService.getAllSeasons().subscribe(
       res => this.seasonNames = res.map(season => season.name)
     );
 
