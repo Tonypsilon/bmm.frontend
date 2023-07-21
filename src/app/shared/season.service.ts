@@ -13,4 +13,8 @@ export class SeasonService {
   create(season: Season): Observable<Season> {
     return this.http.post<Season>('//localhost:8080/seasons', season);
   }
+
+  getAllSeasons(): Observable<Season[]> {
+    return this.http.get<Season[]>('//localhost:8080/seasons');
+  }
 }

@@ -1,0 +1,13 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <mat-form-field>
+    <mat-label>Benutzername</mat-label>
+    <input matInput formControlName="username" type="text">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label>Saison</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let season of seasons" [value]="season.id">{{ season.label }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
