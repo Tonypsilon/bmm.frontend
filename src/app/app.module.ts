@@ -34,7 +34,7 @@ import { UserFormComponent } from './user/admin/user-form/user-form.component';
 import { ChangePasswordComponent } from './user/admin/change-password/change-password.component';
 import { ChangePasswordFormComponent } from './user/admin/change-password-form/change-password-form.component';
 import { SeasonAdminCreateComponent } from './user/admin/season-admin-create/season-admin-create.component';
-import { SeasonAdminFormComponent } from './user/admin/season-admin-form/season-admin-form.component';
+import { XAdminFormComponent } from './user/admin/x-admin-form/x-admin-form.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,7 @@ import { SeasonAdminFormComponent } from './user/admin/season-admin-form/season-
     ChangePasswordComponent,
     ChangePasswordFormComponent,
     SeasonAdminCreateComponent,
-    SeasonAdminFormComponent
+    XAdminFormComponent
   ],
   imports: [
     BrowserModule,
