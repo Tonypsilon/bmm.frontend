@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {User} from "../../../shared/data/user";
 import {ChangePassword} from "../../../shared/data/change-password";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../../shared/authentication.service";

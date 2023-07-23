@@ -6,8 +6,10 @@
   <br>
   <mat-form-field>
     <mat-label>Saison</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let x of xs" [value]="x.id">{{ x.label }}</mat-option>
+    <mat-select formControlName="x">
+      <mat-option *ngFor="let x of xs" [value]="x">{{ x.label }}</mat-option>
     </mat-select>
   </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" type="submit">OK</button>
 </form>
