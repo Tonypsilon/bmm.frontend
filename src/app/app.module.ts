@@ -13,6 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule} from "@angular/material/snack-bar";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { SecurityCookiesInterceptor } from './auth/security-cookies.interceptor';
@@ -70,6 +71,7 @@ import { XAdminFormComponent } from './user/admin/x-admin-form/x-admin-form.comp
     MatIconModule,
     MatInputModule,
     MatSelectModule,
+    MatSnackBarModule,
     HttpClientModule,
     ReactiveFormsModule
   ],

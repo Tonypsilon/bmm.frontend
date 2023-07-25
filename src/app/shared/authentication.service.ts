@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { Authentication } from './data/authentication';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {MessageService} from "../messages/message.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class AuthenticationService {
   readonly isAuthenticated$ = this._isAuthenticated$.asObservable();
 
   constructor(private http: HttpClient,
-    private router: Router) { }
+              private router: Router,
+              private messageService: MessageService) { }
 
   login(username: string, password: string): void {
 
@@ -31,7 +33,10 @@ export class AuthenticationService {
         if(res.username === username) {
           this._authenticationData$.next(res);
           this._isAuthenticated$.next(true);
+          this.messageService.success("Erfolgreich eingeloggt als " + username);
           this.router.navigate(['/admin/home']);
+        } else {
+          this.messageService.error("Benutzername oder Passwort falsch!");
         }
       });
   }
