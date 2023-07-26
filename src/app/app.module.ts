@@ -36,6 +36,7 @@ import { ChangePasswordComponent } from './user/admin/change-password/change-pas
 import { ChangePasswordFormComponent } from './user/admin/change-password-form/change-password-form.component';
 import { SeasonAdminCreateComponent } from './user/admin/season-admin-create/season-admin-create.component';
 import { XAdminFormComponent } from './user/admin/x-admin-form/x-admin-form.component';
+import { SuccessMessageComponent } from './messages/success-message/success-message.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { XAdminFormComponent } from './user/admin/x-admin-form/x-admin-form.comp
     ChangePasswordComponent,
     ChangePasswordFormComponent,
     SeasonAdminCreateComponent,
-    XAdminFormComponent
+    XAdminFormComponent,
+    SuccessMessageComponent
   ],
   imports: [
     BrowserModule,
