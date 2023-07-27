@@ -5,6 +5,7 @@ import {IdAndLabel} from "../../../shared/data/id-and-label";
 import {map, Observable} from 'rxjs';
 import {Season} from "../../../shared/data/season";
 import {HttpClient} from "@angular/common/http";
+import {MessageService} from "../../../messages/message.service";
 
 @Component({
   selector: 'bmm-season-admin-create',
@@ -15,7 +16,8 @@ export class SeasonAdminCreateComponent implements OnInit {
   seasons$: Observable<IdAndLabel[]>;
 
   constructor(private http: HttpClient,
-              private seasonService: SeasonService) {
+              private seasonService: SeasonService,
+              private messageService: MessageService) {
     this.seasons$ = this.getAllSeasons();
   }
 
@@ -29,7 +31,11 @@ export class SeasonAdminCreateComponent implements OnInit {
 
   create(seasonAdmin: SeasonAdmin) {
     this.http.post<SeasonAdmin>('//localhost:8080/seasonadmins', seasonAdmin)
-      .subscribe(value => console.log(value));
+      .subscribe(createdSeasonAdmin => this.messageService.success(
+        'Benutzer ' + createdSeasonAdmin.username +
+        ' wurde erfolgreich zum Saisonadmin für die Saison mit ID '
+        + createdSeasonAdmin.seasonId
+      ));
   }
 
   private seasonsToIdAndLabels(seasons: Season[]) : IdAndLabel[] {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/data/user';
 import { UserService } from 'src/app/shared/user.service';
+import {MessageService} from "../../../messages/message.service";
 
 @Component({
   selector: 'bmm-user-create',
@@ -9,15 +10,16 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class UserCreateComponent implements OnInit {
 
-  constructor(private service: UserService) {
+  constructor(private userService: UserService,
+              private messageService: MessageService) {
   }
 
   ngOnInit(): void {
   }
 
   create(user: User) {
-    this.service.create(user).subscribe(createdUser => {
-      console.log("User created: " + createdUser.username);
+    this.userService.create(user).subscribe(createdUser => {
+      this.messageService.success('Benutzer ' + createdUser.username + 'erfolgreich erstellt.');
     });
   }
 

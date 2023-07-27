@@ -15,12 +15,14 @@ export class MessageService {
       data: message
     });*/
     this._snackBar.open('✅ ' + message, "🆗", {
-      duration: 6000
+      duration: 5000
     });
   }
 
   error(message: string) {
-    this._snackBar.open('❌ ' + message, "🆗");
+    this._snackBar.open('❌ ' + message, "🆗", {
+      duration: 8000
+    });
   }
 
 }

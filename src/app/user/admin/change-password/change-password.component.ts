@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../shared/user.service";
 import {ChangePassword} from "../../../shared/data/change-password";
+import {MessageService} from "../../../messages/message.service";
 
 @Component({
   selector: 'bmm-change-password',
@@ -9,15 +10,16 @@ import {ChangePassword} from "../../../shared/data/change-password";
 })
 export class ChangePasswordComponent implements OnInit {
 
-  constructor(private service: UserService) {
+  constructor(private userService: UserService,
+              private messageService: MessageService) {
   }
 
   ngOnInit() {
   }
 
   changePassword(changePassword: ChangePassword) {
-    this.service.changePassword(changePassword).subscribe(changedUser => {
-      console.log("Password changed for " + changedUser.username)
+    this.userService.changePassword(changePassword).subscribe(changedUser => {
+      this.messageService.success('Das Passwort wurde erfolgreich geändert.')
     });
   }
 

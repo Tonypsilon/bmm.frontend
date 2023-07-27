@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Season } from 'src/app/shared/data/season';
 import { SeasonService } from 'src/app/shared/season.service';
+import {MessageService} from "../../../messages/message.service";
 
 @Component({
   selector: 'bmm-season-create',
@@ -9,15 +10,16 @@ import { SeasonService } from 'src/app/shared/season.service';
 })
 export class SeasonCreateComponent implements OnInit {
 
-  constructor(private service: SeasonService) {
+  constructor(private seasonService: SeasonService,
+              private messageService: MessageService) {
   }
 
   ngOnInit(): void {
   }
 
   create(season: Season) {
-    this.service.create(season).subscribe(createdSeason => {
-      console.log(createdSeason.name);
+    this.seasonService.create(season).subscribe(createdSeason => {
+      this.messageService.success('Saison ' + createdSeason.name + 'erfolgreich erstellt.');
     });
   }
 
