@@ -26,7 +26,6 @@ export class SeasonFormComponent implements OnInit {
     const newSeason: Season = {
       ...formValue
     }
-    console.log(newSeason);
     this.submitSeason.emit(newSeason);
   }
 }
