@@ -5,7 +5,7 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <mat-label>Saison</mat-label>
+    <mat-label>{{xName}}</mat-label>
     <mat-select formControlName="x">
       <mat-option *ngFor="let x of xs" [value]="x">{{ x.label }}</mat-option>
     </mat-select>

@@ -39,6 +39,7 @@ import { XAdminFormComponent } from './user/admin/x-admin-form/x-admin-form.comp
 import { SuccessMessageComponent } from './messages/success-message/success-message.component';
 import { ClubCreateComponent } from './club/admin/club-create/club-create.component';
 import { ClubFormComponent } from './club/admin/club-form/club-form.component';
+import { ClubAdminCreateComponent } from './user/admin/club-admin-create/club-admin-create.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ClubFormComponent } from './club/admin/club-form/club-form.component';
     XAdminFormComponent,
     SuccessMessageComponent,
     ClubCreateComponent,
-    ClubFormComponent
+    ClubFormComponent,
+    ClubAdminCreateComponent
   ],
   imports: [
     BrowserModule,

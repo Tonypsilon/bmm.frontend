@@ -1,12 +1,12 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Benutzer zu Saisonadmin machen</mat-card-title>
+    <mat-card-title>Benutzer zu Vereinsadmin machen</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <bmm-x-admin-form
-      *ngIf="seasons$ | async as seasons"
-      [xs]="seasons"
-      [xName]="'Saison'"
+      *ngIf="clubs$ | async as clubs"
+      [xs]="clubs"
+      [xName]="'Verein'"
       (submitXAdmin)="create($event)"></bmm-x-admin-form>
   </mat-card-content>
 </mat-card>

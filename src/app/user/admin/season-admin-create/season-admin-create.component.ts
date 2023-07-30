@@ -29,7 +29,11 @@ export class SeasonAdminCreateComponent implements OnInit {
       .pipe(map(seasons => this.seasonsToIdAndLabels(seasons)));
   }
 
-  create(seasonAdmin: SeasonAdmin) {
+  create(seasonAdminAsIdAndLabel: IdAndLabel) {
+    const seasonAdmin = {
+      seasonId: seasonAdminAsIdAndLabel.id,
+      username: seasonAdminAsIdAndLabel.label
+    };
     this.http.post<SeasonAdmin>('//localhost:8080/seasonadmins', seasonAdmin)
       .subscribe(createdSeasonAdmin => this.messageService.success(
         'Benutzer ' + createdSeasonAdmin.username +

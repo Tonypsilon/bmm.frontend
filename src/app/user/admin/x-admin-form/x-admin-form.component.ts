@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SeasonAdmin} from "../../../shared/data/season-admin";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {IdAndLabel} from "../../../shared/data/id-and-label";
+import {MessageService} from "../../../messages/message.service";
 
 @Component({
   selector: 'bmm-x-admin-form',
@@ -10,8 +11,12 @@ import {IdAndLabel} from "../../../shared/data/id-and-label";
 })
 export class XAdminFormComponent implements OnInit {
 
+  constructor(private messageService: MessageService) {
+  }
+
   @Input() xs: IdAndLabel[] = [];
-  @Output() submitXAdmin = new EventEmitter<SeasonAdmin>();
+  @Input() xName: string ='';
+  @Output() submitXAdmin = new EventEmitter<IdAndLabel>();
   form = new FormGroup({
     username: new FormControl('', {
       nonNullable: true,
@@ -31,13 +36,13 @@ export class XAdminFormComponent implements OnInit {
     console.log(formValue);
     console.log(this.xs);
     if(formValue.x && formValue.x.id && formValue.username) {
-      const newSeasonAdmin = {
-        seasonId : formValue.x.id,
-        username : formValue.username
+      const newXAdmin = {
+        id : formValue.x.id,
+        label : formValue.username
       };
-      this.submitXAdmin.emit(newSeasonAdmin);
+      this.submitXAdmin.emit(newXAdmin);
     } else {
-      console.log('Keine Saison oder keinen Benutzer ausgewählt!');
+      this.messageService.error('Beide Felder müssen ausgefüllt sein!');
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Club} from "./data/club";
 import {Observable} from "rxjs";
@@ -12,5 +12,9 @@ export class ClubService {
 
   create(club: Club): Observable<Club> {
     return this.http.post<Club>('//localhost:8080/clubs', club);
+  }
+
+  getAllClubs(): Observable<Club[]> {
+    return this.http.get<Club[]>('//localhost:8080/clubs');
   }
 }
