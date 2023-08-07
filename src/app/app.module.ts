@@ -43,6 +43,7 @@ import { ClubAdminCreateComponent } from './user/admin/club-admin-create/club-ad
 import { CreateOrganizationComponent } from './user/clubadmin/create-organization/create-organization.component';
 import { MultipleClubsFormComponent } from './clubadmin/create-organization/multiple-clubs-form/multiple-clubs-form.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -72,23 +73,24 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     CreateOrganizationComponent,
     MultipleClubsFormComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatFormFieldModule,
-        MatCardModule,
-        MatMenuModule,
-        MatButtonModule,
-        MatIconModule,
-        MatInputModule,
-        MatSelectModule,
-        MatSnackBarModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        MatCheckboxModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatDividerModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

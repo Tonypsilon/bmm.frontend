@@ -5,5 +5,6 @@ export interface Authentication {
   isAdmin: boolean;
   seasons: IdAndLabel[];
   clubs: IdAndLabel[];
+  organizations: IdAndLabel[];
   teams: IdAndLabel[];
 }

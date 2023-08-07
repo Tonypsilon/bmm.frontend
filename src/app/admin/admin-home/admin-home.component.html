@@ -1,44 +1,46 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Administration</mat-card-title>
-  </mat-card-header>
-  <br>
-  <mat-card-content>
-    <div *ngIf="true">
-      <mat-card>
-        <bmm-user></bmm-user>
-      </mat-card>
-      <br>
-    </div>
-    <div *ngIf="true">
-      <mat-card>
-        <bmm-admin></bmm-admin>
-      </mat-card>
-      <br>
-    </div>
-    <div *ngIf="true">
-      <mat-card>
-        <bmm-season-admin></bmm-season-admin>
-      </mat-card>
-      <br>
-    </div>
-    <div *ngIf="true">
-      <mat-card>
-        <bmm-club-admin></bmm-club-admin>
-      </mat-card>
-      <br>
-    </div>
-    <div *ngIf="true">
-      <mat-card>
-        <bmm-organization-admin></bmm-organization-admin>
-      </mat-card>
-      <br>
-    </div>
-    <div *ngIf="true">
-      <mat-card>
-        <bmm-team-admin></bmm-team-admin>
-      </mat-card>
-      <br>
-    </div>
-  </mat-card-content>
-</mat-card>
+<ng-container *ngIf="authentication$ | async as authentication">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Administration</mat-card-title>
+    </mat-card-header>
+    <br>
+    <mat-card-content>
+      <div *ngIf="true">
+        <mat-card>
+          <bmm-user></bmm-user>
+        </mat-card>
+        <br>
+      </div>
+      <div *ngIf="authentication && authentication.isAdmin">
+        <mat-card>
+          <bmm-admin></bmm-admin>
+        </mat-card>
+        <br>
+      </div>
+      <div *ngIf="authentication && authentication.seasons.length">
+        <mat-card>
+          <bmm-season-admin></bmm-season-admin>
+        </mat-card>
+        <br>
+      </div>
+      <div *ngIf="authentication && authentication.clubs.length">
+        <mat-card>
+          <bmm-club-admin></bmm-club-admin>
+        </mat-card>
+        <br>
+      </div>
+      <div *ngIf="authentication && authentication.organizations.length">
+        <mat-card>
+          <bmm-organization-admin></bmm-organization-admin>
+        </mat-card>
+        <br>
+      </div>
+      <div *ngIf="authentication && authentication.teams.length">
+        <mat-card>
+          <bmm-team-admin></bmm-team-admin>
+        </mat-card>
+        <br>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
