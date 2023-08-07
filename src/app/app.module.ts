@@ -40,6 +40,9 @@ import { SuccessMessageComponent } from './messages/success-message/success-mess
 import { ClubCreateComponent } from './club/admin/club-create/club-create.component';
 import { ClubFormComponent } from './club/admin/club-form/club-form.component';
 import { ClubAdminCreateComponent } from './user/admin/club-admin-create/club-admin-create.component';
+import { CreateOrganizationComponent } from './user/clubadmin/create-organization/create-organization.component';
+import { MultipleClubsFormComponent } from './clubadmin/create-organization/multiple-clubs-form/multiple-clubs-form.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -65,24 +68,27 @@ import { ClubAdminCreateComponent } from './user/admin/club-admin-create/club-ad
     SuccessMessageComponent,
     ClubCreateComponent,
     ClubFormComponent,
-    ClubAdminCreateComponent
+    ClubAdminCreateComponent,
+    CreateOrganizationComponent,
+    MultipleClubsFormComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    HttpClientModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatCardModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        MatCheckboxModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

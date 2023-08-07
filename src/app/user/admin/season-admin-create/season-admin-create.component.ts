@@ -25,8 +25,7 @@ export class SeasonAdminCreateComponent implements OnInit {
   }
 
   getAllSeasons() : Observable<IdAndLabel[]> {
-    return this.seasonService.getAllSeasons()
-      .pipe(map(seasons => this.seasonsToIdAndLabels(seasons)));
+    return this.seasonService.getAllSeasonsAsIdAndLabels();
   }
 
   create(seasonAdminAsIdAndLabel: IdAndLabel) {
@@ -42,16 +41,6 @@ export class SeasonAdminCreateComponent implements OnInit {
       ));
   }
 
-  private seasonsToIdAndLabels(seasons: Season[]) : IdAndLabel[] {
-    return seasons.filter(season => season.id !== undefined)
-      .map(season => this.seasonToIdAndLabel(season));
-  }
 
-  private seasonToIdAndLabel(season: Season) : IdAndLabel {
-    return {
-      id: season.id!,
-      label: season.name
-    };
-  }
 
 }

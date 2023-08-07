@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Season } from './data/season';
-import { Observable } from 'rxjs';
+import {map, Observable} from 'rxjs';
+import {IdAndLabel} from "./data/id-and-label";
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,22 @@ export class SeasonService {
 
   getAllSeasons(): Observable<Season[]> {
     return this.http.get<Season[]>('//localhost:8080/seasons');
+  }
+
+  getAllSeasonsAsIdAndLabels(): Observable<IdAndLabel[]> {
+    return this.getAllSeasons()
+      .pipe(map(seasons => this.seasonsToIdAndLabels(seasons)));
+  }
+
+  private seasonsToIdAndLabels(seasons: Season[]) : IdAndLabel[] {
+    return seasons.filter(season => season.id !== undefined)
+      .map(season => this.seasonToIdAndLabel(season));
+  }
+
+  private seasonToIdAndLabel(season: Season) : IdAndLabel {
+    return {
+      id: season.id!,
+      label: season.name
+    };
   }
 }
