@@ -10,6 +10,7 @@ import {ChangePasswordComponent} from "./user/admin/change-password/change-passw
 import {SeasonAdminCreateComponent} from "./user/admin/season-admin-create/season-admin-create.component";
 import {ClubCreateComponent} from "./club/admin/club-create/club-create.component";
 import {ClubAdminCreateComponent} from "./user/admin/club-admin-create/club-admin-create.component";
+import {CreateOrganizationComponent} from "./user/clubadmin/create-organization/create-organization.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'admin/change-password', component: ChangePasswordComponent},
   {path: 'admin/create-season-admin', component: SeasonAdminCreateComponent},
   {path: 'admin/create-club', component: ClubCreateComponent},
-  {path: 'admin/create-club-admin', component: ClubAdminCreateComponent}
+  {path: 'admin/create-club-admin', component: ClubAdminCreateComponent},
+  {path: 'admin/create-organization', component: CreateOrganizationComponent}
 ];
 
 @NgModule({

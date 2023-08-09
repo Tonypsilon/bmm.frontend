@@ -2,18 +2,18 @@
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="submitForm()">
       <mat-form-field>
+        <mat-label>Verein</mat-label>
         <mat-select formControlName="club">
           <mat-option *ngFor="let c of clubs" [value]="c">{{ c.label }}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
+        <mat-label>Saison</mat-label>
         <mat-select formControlName="season">
           <mat-option *ngFor="let s of seasons" [value]="s">{{ s.label }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field formControlName="isGroup">
-        <mat-checkbox>Spielgemeinschaft</mat-checkbox>
-      </mat-form-field>
+      <mat-checkbox formControlName="isGroup" style="margin-right:8px">Spielgemeinschaft</mat-checkbox>
       <button mat-raised-button color="primary" type="submit">Anmelden</button>
     </form>
   </mat-card-content>

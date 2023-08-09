@@ -1,2 +1,8 @@
 <mat-card-header><mat-card-title>Verein</mat-card-title></mat-card-header>
-<mat-card-content>Verein works!</mat-card-content>
+<mat-card-content>
+  <bmm-create-organization
+    *ngIf="seasons$ | async as theSeasons"
+    [seasons]="theSeasons"
+    [clubs]="clubs">
+  </bmm-create-organization>
+</mat-card-content>

@@ -24,7 +24,7 @@ export class SeasonService {
       .pipe(map(seasons => this.seasonsToIdAndLabels(seasons)));
   }
 
-  private seasonsToIdAndLabels(seasons: Season[]) : IdAndLabel[] {
+  public seasonsToIdAndLabels(seasons: Season[]) : IdAndLabel[] {
     return seasons.filter(season => season.id !== undefined)
       .map(season => this.seasonToIdAndLabel(season));
   }

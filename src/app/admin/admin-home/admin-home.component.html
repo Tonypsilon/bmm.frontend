@@ -25,7 +25,7 @@
       </div>
       <div *ngIf="authentication && authentication.clubs.length">
         <mat-card>
-          <bmm-club-admin></bmm-club-admin>
+          <bmm-club-admin [clubs]="authentication.clubs"></bmm-club-admin>
         </mat-card>
         <br>
       </div>
