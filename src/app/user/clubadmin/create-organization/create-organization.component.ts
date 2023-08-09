@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IdAndLabel} from "../../../shared/data/id-and-label";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MessageService} from "../../../messages/message.service";
+import {HttpClient} from "@angular/common/http";
+import {Organization} from "../../../shared/data/organization";
 
 @Component({
   selector: 'bmm-create-organization',
@@ -26,11 +29,38 @@ export class CreateOrganizationComponent implements OnInit {
     })
   });
 
+  constructor(private messageService: MessageService,
+              private http: HttpClient) {
+  }
+
   ngOnInit() {
   }
 
   submitForm() {
-    console.log('Anmelden triggered: ' + this.form.getRawValue())
+    const formValue = this.form.getRawValue();
+    if(!formValue.season || !formValue.club) {
+      this.messageService.error('Es müssen ein Verein und eine Saison ausgewählt sein!');
+    } else {
+      if (formValue.isGroup) {
+        this.messageService.error('Anmeldung als Spielgemeinschaft derzeit nicht möglich.');
+      } else {
+        const newOrganization: Organization = {
+          seasonId: formValue.season.id,
+          name: formValue.club.label,
+          clubIds: [formValue.club.id]
+        }
+        this.postOrganization(newOrganization);
+      }
+    }
+  }
+
+  private postOrganization(organization: Organization) {
+    this.http.post<Organization>('//localhost:8080/organizations', organization)
+      .subscribe(createdOrganization => {
+        this.messageService.success('Organisation '
+          + createdOrganization.name
+          + ' erfolgreich angemeldet.');
+      })
   }
 
 }

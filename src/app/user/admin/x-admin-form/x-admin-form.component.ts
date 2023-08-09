@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SeasonAdmin} from "../../../shared/data/season-admin";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {IdAndLabel} from "../../../shared/data/id-and-label";
 import {MessageService} from "../../../messages/message.service";

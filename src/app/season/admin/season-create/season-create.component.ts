@@ -19,7 +19,7 @@ export class SeasonCreateComponent implements OnInit {
 
   create(season: Season) {
     this.seasonService.create(season).subscribe(createdSeason => {
-      this.messageService.success('Saison ' + createdSeason.name + 'erfolgreich erstellt.');
+      this.messageService.success('Saison ' + createdSeason.name + ' erfolgreich erstellt.');
     });
   }
 
