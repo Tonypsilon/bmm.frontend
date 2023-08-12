@@ -53,7 +53,7 @@ export class CreateOrganizationComponent implements OnInit {
         let dialogRef;
         this.availableClubs$.subscribe(clubs => {
           dialogRef = this.dialog.open(SelectMultipleClubsComponent, {
-            data: {availableClubs: clubs}
+            data: {availableClubs: clubs.filter(club => club.id !== formValue.club!.id)}
           });
           dialogRef.afterClosed().subscribe(result => {
             let clubIds: number[] = [formValue.club!.id];
