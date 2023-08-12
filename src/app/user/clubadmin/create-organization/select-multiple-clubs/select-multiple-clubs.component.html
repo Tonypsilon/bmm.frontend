@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Weitere Vereine auswählen</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Weitere Vereine auswählen</mat-label>
+    <mat-select [(ngModel)]="data.selectedClubs" multiple>
+      <mat-option *ngFor="let availableClub of data.availableClubs" [value]="availableClub.id">
+        {{availableClub.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="cancel()">Abbrechen</button>
+  <button mat-stroked-button [mat-dialog-close]="data">OK</button>
+</div>

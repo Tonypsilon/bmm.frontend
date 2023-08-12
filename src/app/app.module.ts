@@ -18,7 +18,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { SecurityCookiesInterceptor } from './auth/security-cookies.interceptor';
 import { XhrInterceptor } from './auth/xhr.interceptor';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { SeasonFormComponent } from './season/admin/season-form/season-form.component';
 import { SeasonCreateComponent } from './season/admin/season-create/season-create.component';
@@ -44,6 +44,8 @@ import { CreateOrganizationComponent } from './user/clubadmin/create-organizatio
 import { MultipleClubsFormComponent } from './clubadmin/create-organization/multiple-clubs-form/multiple-clubs-form.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatDividerModule} from "@angular/material/divider";
+import { SelectMultipleClubsComponent } from './user/clubadmin/create-organization/select-multiple-clubs/select-multiple-clubs.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import {MatDividerModule} from "@angular/material/divider";
     ClubFormComponent,
     ClubAdminCreateComponent,
     CreateOrganizationComponent,
-    MultipleClubsFormComponent
+    MultipleClubsFormComponent,
+    SelectMultipleClubsComponent
   ],
   imports: [
     BrowserModule,
@@ -86,10 +89,12 @@ import {MatDividerModule} from "@angular/material/divider";
     MatInputModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatDialogModule,
     HttpClientModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatDividerModule
+    MatDividerModule,
+    FormsModule
   ],
   providers: [
     {

@@ -4,6 +4,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MessageService} from "../../../messages/message.service";
 import {HttpClient} from "@angular/common/http";
 import {Organization} from "../../../shared/data/organization";
+import {MatDialog} from "@angular/material/dialog";
+import {SelectMultipleClubsComponent} from "./select-multiple-clubs/select-multiple-clubs.component";
+import {ClubService} from "../../../shared/club.service";
+import { Observable} from "rxjs";
 
 @Component({
   selector: 'bmm-create-organization',
@@ -11,6 +15,7 @@ import {Organization} from "../../../shared/data/organization";
   styleUrls: ['./create-organization.component.scss']
 })
 export class CreateOrganizationComponent implements OnInit {
+  availableClubs$: Observable<IdAndLabel[]>;
 
   @Input() clubs: IdAndLabel[] = [];
   @Input() seasons: IdAndLabel[] = [];
@@ -30,7 +35,10 @@ export class CreateOrganizationComponent implements OnInit {
   });
 
   constructor(private messageService: MessageService,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private clubService: ClubService,
+              public dialog: MatDialog) {
+    this.availableClubs$ = this.clubService.getAllClubsAsIdAndLabels();
   }
 
   ngOnInit() {
@@ -42,6 +50,27 @@ export class CreateOrganizationComponent implements OnInit {
       this.messageService.error('Es müssen ein Verein und eine Saison ausgewählt sein!');
     } else {
       if (formValue.isGroup) {
+        let dialogRef;
+        this.availableClubs$.subscribe(clubs => {
+          dialogRef = this.dialog.open(SelectMultipleClubsComponent, {
+            data: {availableClubs: clubs}
+          });
+          dialogRef.afterClosed().subscribe(result => {
+            let clubIds: number[] = [formValue.club!.id];
+            if (result.selectedClubs) {
+              for ( let selectedClub of result.selectedClubs) {
+                clubIds.push(selectedClub);
+              }
+            }
+            const newOrganization: Organization = {
+              seasonId: formValue.season!.id,
+              name: result.name,
+              clubIds: clubIds
+            }
+            this.postOrganization(newOrganization);
+          });
+        });
+
         this.messageService.error('Anmeldung als Spielgemeinschaft derzeit nicht möglich.');
       } else {
         const newOrganization: Organization = {
