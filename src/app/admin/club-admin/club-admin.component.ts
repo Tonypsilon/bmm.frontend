@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {IdAndLabel} from "../../shared/data/id-and-label";
 import {SeasonService} from "../../shared/season.service";
-import {filter, map, Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 
 @Component({
   selector: 'bmm-club-admin',

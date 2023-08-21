@@ -46,6 +46,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatDividerModule} from "@angular/material/divider";
 import { SelectMultipleClubsComponent } from './user/clubadmin/create-organization/select-multiple-clubs/select-multiple-clubs.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { VenueManagementComponent } from './clubadmin/venue-management/venue-management.component';
+import { VenueManagementFormComponent } from './clubadmin/venue-management-form/venue-management-form.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     ClubAdminCreateComponent,
     CreateOrganizationComponent,
     MultipleClubsFormComponent,
-    SelectMultipleClubsComponent
+    SelectMultipleClubsComponent,
+    VenueManagementComponent,
+    VenueManagementFormComponent
   ],
   imports: [
     BrowserModule,
