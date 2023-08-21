@@ -70,8 +70,6 @@ export class CreateOrganizationComponent implements OnInit {
             this.postOrganization(newOrganization);
           });
         });
-
-        this.messageService.error('Anmeldung als Spielgemeinschaft derzeit nicht möglich.');
       } else {
         const newOrganization: Organization = {
           seasonId: formValue.season.id,
