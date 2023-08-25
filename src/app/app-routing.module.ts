@@ -11,6 +11,7 @@ import {SeasonAdminCreateComponent} from "./user/admin/season-admin-create/seaso
 import {ClubCreateComponent} from "./club/admin/club-create/club-create.component";
 import {ClubAdminCreateComponent} from "./user/admin/club-admin-create/club-admin-create.component";
 import {CreateOrganizationComponent} from "./user/clubadmin/create-organization/create-organization.component";
+import {VenueManagementFormComponent} from "./clubadmin/venue-management-form/venue-management-form.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'admin/create-season-admin', component: SeasonAdminCreateComponent},
   {path: 'admin/create-club', component: ClubCreateComponent},
   {path: 'admin/create-club-admin', component: ClubAdminCreateComponent},
-  {path: 'admin/create-organization', component: CreateOrganizationComponent}
+  {path: 'admin/create-organization', component: CreateOrganizationComponent},
+  {path: 'admin/venues/:clubId', "component": VenueManagementFormComponent}
 ];
 
 @NgModule({

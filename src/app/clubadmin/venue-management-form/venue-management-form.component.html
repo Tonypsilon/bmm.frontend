@@ -1,1 +1,32 @@
-<p>venue-management-form works!</p>
+<mat-card *ngIf="venues">
+  <mat-card-header>
+    <mat-card-title>Spielorte bearbeiten</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+      <ng-container formArrayName="venueForms">
+        <div *ngFor="let venue of venues.controls; index as i; last as isLast">
+          <div [formGroupName]="i">
+            <mat-form-field [ngStyle]="{'width.ch': 42}">
+              <mat-label>Adresse</mat-label>
+              <input matInput [formControlName]="'address'">
+            </mat-form-field>
+            <mat-form-field [ngStyle]="{'width.ch': 56}">
+              <mat-label>Hinweise</mat-label>
+              <input matInput [formControlName]="'hints'">
+            </mat-form-field>
+          </div>
+          <div *ngIf="!isLast">
+            <mat-divider></mat-divider>
+            <br>
+          </div>
+        </div>
+      </ng-container>
+      <button mat-raised-button color="primary" type="button" (click)="addVenueControl()" style="margin-right:8px">
+        <mat-icon>add</mat-icon> Spielort hinzufügen
+      </button>
+      <button mat-raised-button color="primary" type="submit">Speichern</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+<pre>{{ form.value | json }}</pre>
