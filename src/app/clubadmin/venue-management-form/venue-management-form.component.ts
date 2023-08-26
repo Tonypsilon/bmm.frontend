@@ -4,6 +4,8 @@ import {Venue} from "../../shared/data/venue";
 import {VenueService} from "../../shared/venue.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {getXHRResponse} from "rxjs/internal/ajax/getXHRResponse";
+import {MessageService} from "../../messages/message.service";
 
 @Component({
   selector: 'bmm-venue-management-form',
@@ -22,7 +24,8 @@ export class VenueManagementFormComponent implements OnChanges {
   }
 
   constructor(private venueService: VenueService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private messageService: MessageService) {
     this.venues$ = this.route.paramMap.pipe(
       map(params => params.get('clubId')!),
       switchMap(clubId => this.venueService.getVenuesOfClub(parseInt(clubId)))
@@ -37,7 +40,25 @@ export class VenueManagementFormComponent implements OnChanges {
   }
 
   submitForm() {
-    const formValue = this.form.getRawValue().venueForms[0].address;
+    const formValue = this.form.getRawValue().venueForms;
+    console.log(formValue)
+    this.route.paramMap.pipe(
+      map(params => params.get('clubId')!)).subscribe(
+        clubId => this.venueService.putVenuesForClub(
+          parseInt(clubId),
+          formValue
+            .filter(value => value.address)
+            .map(value => {
+              const venue: Venue = {
+                clubId: parseInt(clubId),
+                address: value.address,
+                hints: value.hints === null ? undefined : value.hints
+              };
+              return venue;
+            }
+          ))
+          .subscribe(response => this.messageService.success("Spielorte erfolgreich gespeichert."))
+    );
   }
 
   private setFormValues(venues: Venue[]) {
