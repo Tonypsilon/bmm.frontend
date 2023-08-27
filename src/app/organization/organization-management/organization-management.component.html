@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Mannschaften</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Organisation</mat-label>
+      <mat-select [(ngModel)]="organization">
+        <mat-option *ngFor="let o of organizations" [value]="o"> {{ o.label}} </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button *ngIf="organization"
+            [routerLink]="['/admin/organizations', organization.id, 'teams']">Bearbeiten</button>
+    <button mat-stroked-button *ngIf="!organization" [disabled]="true">Bearbeiten</button>
+  </mat-card-actions>
+</mat-card>

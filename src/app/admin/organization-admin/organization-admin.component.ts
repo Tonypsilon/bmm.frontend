@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {IdAndLabel} from "../../shared/data/id-and-label";
 
 @Component({
   selector: 'bmm-organization-admin',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./organization-admin.component.scss']
 })
 export class OrganizationAdminComponent {
+  @Input() organizations: IdAndLabel[] = [];
 
+  constructor() {
+  }
 }

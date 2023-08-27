@@ -49,6 +49,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { VenueManagementComponent } from './clubadmin/venue-management/venue-management.component';
 import { VenueManagementFormComponent } from './clubadmin/venue-management-form/venue-management-form.component';
 import { VenueComponent } from './clubadmin/venue/venue.component';
+import { EditTeamsComponent } from './organization/edit-teams/edit-teams.component';
+import { OrganizationManagementComponent } from './organization/organization-management/organization-management.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { VenueComponent } from './clubadmin/venue/venue.component';
     SelectMultipleClubsComponent,
     VenueManagementComponent,
     VenueManagementFormComponent,
-    VenueComponent
+    VenueComponent,
+    EditTeamsComponent,
+    OrganizationManagementComponent
   ],
   imports: [
     BrowserModule,

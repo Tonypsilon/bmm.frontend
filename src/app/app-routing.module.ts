@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'admin/create-club', component: ClubCreateComponent},
   {path: 'admin/create-club-admin', component: ClubAdminCreateComponent},
   {path: 'admin/create-organization', component: CreateOrganizationComponent},
-  {path: 'admin/venues/:clubId', "component": VenueManagementFormComponent}
+  {path: 'admin/clubs/:clubId/venues', component: VenueManagementFormComponent}
 ];
 
 @NgModule({
