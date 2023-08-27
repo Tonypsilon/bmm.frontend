@@ -4,7 +4,6 @@ import {Venue} from "../../shared/data/venue";
 import {VenueService} from "../../shared/venue.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {getXHRResponse} from "rxjs/internal/ajax/getXHRResponse";
 import {MessageService} from "../../messages/message.service";
 
 @Component({
@@ -50,6 +49,7 @@ export class VenueManagementFormComponent implements OnChanges {
             .filter(value => value.address)
             .map(value => {
               const venue: Venue = {
+                id: value.venueId === null || undefined  ? undefined : value.venueId,
                 clubId: parseInt(clubId),
                 address: value.address,
                 hints: value.hints === null ? undefined : value.hints
@@ -74,7 +74,8 @@ export class VenueManagementFormComponent implements OnChanges {
         }),
         hints: new FormControl<string | null | undefined>(venue.hints, {
           nonNullable: false
-        })
+        }),
+        venueId: new FormControl<number | null | undefined>(venue.id)
       }))
     );
   }
@@ -88,7 +89,8 @@ export class VenueManagementFormComponent implements OnChanges {
         }),
         hints: new FormControl<string | null | undefined>('', {
           nonNullable: false
-        })
+        }),
+        venueId: new FormControl<number | null | undefined>(null)
       })
     );
   }
