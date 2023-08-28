@@ -14,6 +14,10 @@ export class VenueService {
     return this.http.get<Venue[]>('//localhost:8080/venues/club/' + clubId);
   }
 
+  getVenuesOfOrganization(organizationId: number): Observable<Venue[]> {
+    return this.http.get<Venue[]>('//localhost:8080/venues/organization/' + organizationId);
+  }
+
   putVenuesForClub(clubId: number, venues: Venue[]): Observable<any> {
     return this.http.put('//localhost:8080/venues/club/' + clubId, venues);
   }
