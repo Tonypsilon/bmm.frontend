@@ -6,7 +6,7 @@ import {VenueService} from "../../shared/venue.service";
 import {ActivatedRoute} from "@angular/router";
 import {MessageService} from "../../messages/message.service";
 import {map, switchMap} from "rxjs";
-import {OrganizationService} from "../../shared/organization-service";
+import {OrganizationService} from "../../shared/organization.service";
 
 @Component({
   selector: 'bmm-edit-teams',
