@@ -1,7 +1,7 @@
-import {Player} from "./player";
+import {ParticipationEligibility} from "./participationEligibility";
 import {Team} from "./team";
 
 export interface OrganizationSetup {
-  availablePlayers: Player[];
+  availablePlayers: ParticipationEligibility[];
   teams: Team[];
 }

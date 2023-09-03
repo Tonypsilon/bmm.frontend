@@ -1,4 +1,4 @@
-import {Player} from "./player";
+import {ParticipationEligibility} from "./participationEligibility";
 
 export interface Team {
   id?: number;
@@ -6,5 +6,5 @@ export interface Team {
   number: number;
   venueId?: number;
   name?: string;
-  players?: Player[]
+  players?: ParticipationEligibility[]
 }

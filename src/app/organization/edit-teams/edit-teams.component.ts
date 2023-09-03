@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Venue} from "../../shared/data/venue";
 import {Team} from "../../shared/data/team";
-import {Player} from "../../shared/data/player";
+import {ParticipationEligibility} from "../../shared/data/participationEligibility";
 import {VenueService} from "../../shared/venue.service";
 import {ActivatedRoute} from "@angular/router";
 import {MessageService} from "../../messages/message.service";
@@ -15,7 +15,7 @@ import {OrganizationService} from "../../shared/organization.service";
 })
 export class EditTeamsComponent {
   venues: Venue[] = [];
-  availablePlayers: Player[] = [];
+  availablePlayers: ParticipationEligibility[] = [];
   teams: Team[] = [];
 
   constructor(private venueService: VenueService,
