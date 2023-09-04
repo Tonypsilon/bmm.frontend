@@ -51,6 +51,8 @@ import { VenueManagementFormComponent } from './clubadmin/venue-management-form/
 import { VenueComponent } from './clubadmin/venue/venue.component';
 import { EditTeamsComponent } from './organization/edit-teams/edit-teams.component';
 import { OrganizationManagementComponent } from './organization/organization-management/organization-management.component';
+import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
+import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 
 @NgModule({
   declarations: [
@@ -104,7 +106,13 @@ import { OrganizationManagementComponent } from './organization/organization-man
     ReactiveFormsModule,
     MatCheckboxModule,
     MatDividerModule,
-    FormsModule
+    FormsModule,
+    CdkDropListGroup,
+    CdkVirtualScrollViewport,
+    CdkFixedSizeVirtualScroll,
+    CdkVirtualForOf,
+    CdkDropList,
+    CdkDrag
   ],
   providers: [
     {

@@ -1,1 +1,62 @@
-<p>edit-teams works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Mannschaftsaufstellungen</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div cdkDropListGroup>
+      <mat-card class="bmm-vertical-split-container">
+        <mat-card-header>
+          <mat-card-title>Verfügbare Spieler</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div cdkDropList
+          [cdkDropListData]="availablePlayers"
+          class="bmm-drop-list" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let availablePlayer of availablePlayers" cdkDrag
+            class="bmm-drop-list-box">
+              {{availablePlayer.surname}}, {{availablePlayer.forename}} <span class="spacer"></span>
+              <ng-container *ngIf="availablePlayer.dwz">{{availablePlayer.dwz}}</ng-container>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="bmm-vertical-split-container">
+        <mat-card-header>
+          <mat-card-title>Mannschaften</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card *ngFor="let team of teams index as i"
+          style="margin-bottom: 15px">
+            <mat-card-header>
+              <mat-card-title>{{i +1}}. Mannschaft</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div cdkDropList
+              [cdkDropListData]="team.participants"
+              class="bmm-drop-list"
+              (cdkDropListDropped)="drop($event)">
+                <div *ngFor="let player of team.participants index as j" cdkDrag
+                class="bmm-drop-list-box">
+                  {{ i+1 }}<ng-container *ngIf="j<10">0</ng-container>{{ j+1 }}
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  {{ player.surname}}, {{player.forename}} <span class="spacer"></span>
+                  <ng-container *ngIf="player.dwz">{{ player.dwz }}</ng-container>
+                  <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" style="margin-right:8px">
+      <mat-icon>add</mat-icon> Mannschaft hinzufügen</button>
+    <button mat-raised-button color="primary" style="margin-right:8px">
+      <mat-icon>delete</mat-icon> Letzte Mannschaft entfernen</button>
+    <button mat-raised-button color="primary" style="margin-right:8px">Speichern</button>
+  </mat-card-actions>
+</mat-card>
+<pre>{{ availablePlayers | json }}</pre>
+<pre>{{ teams | json }}</pre>
