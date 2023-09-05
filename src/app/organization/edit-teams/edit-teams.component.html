@@ -8,19 +8,27 @@
         <mat-card-header>
           <mat-card-title>Verfügbare Spieler</mat-card-title>
           <span class="spacer"></span>
-          <button mat-icon-button color="primary">
+          <button mat-icon-button color="primary" (click)="sortAvailablePlayersByName()">
             <mat-icon>sort_by_alpha</mat-icon></button>
-          <button mat-icon-button color="primary">
+          <button mat-icon-button color="primary" (click)="sortAvailablePlayersByRating()">
             <mat-icon>format_list_numbered_rtl</mat-icon></button>
         </mat-card-header>
         <mat-card-content>
           <div cdkDropList
           [cdkDropListData]="availablePlayers"
           class="bmm-drop-list" (cdkDropListDropped)="drop($event)">
-            <div *ngFor="let availablePlayer of availablePlayers" cdkDrag
+            <div *ngFor="let availablePlayer of availablePlayers index as i" cdkDrag
             class="bmm-drop-list-box">
               {{availablePlayer.surname}}, {{availablePlayer.forename}} <span class="spacer"></span>
               <ng-container *ngIf="availablePlayer.dwz">{{availablePlayer.dwz}}</ng-container>
+              <button mat-icon-button color="primary" [matMenuTriggerFor]="teamSelection">
+                <mat-icon>chevron_right</mat-icon>
+                <mat-menu #teamSelection="matMenu">
+                  <button mat-menu-item *ngFor="let team of teams"
+                          (click)="pushParticipantToTeam(availablePlayer, i, team.number)">
+                    {{team.number}}. Mannschaft</button>
+                </mat-menu>
+              </button>
             </div>
           </div>
         </mat-card-content>

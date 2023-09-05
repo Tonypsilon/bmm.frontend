@@ -89,10 +89,46 @@ export class EditTeamsComponent implements OnChanges {
   }
 
   sortAvailablePlayersByName() {
-
+    this.availablePlayers.sort((p1, p2) => {
+      if(p1.surname < p2.surname) {
+        return -1;
+      }
+      if(p1.surname > p2.surname) {
+        return 1;
+      }
+      if(p1.forename < p2.forename) {
+        return -1;
+      }
+      if(p1.forename > p2.forename) {
+        return 1;
+      }
+      return 0;
+    });
   }
 
   sortAvailablePlayersByRating() {
+    this.availablePlayers.sort((p1, p2) => {
+      if (!p1.dwz && !p2.dwz) {
+        return 0;
+      }
+      if(!p1.dwz) {
+        return 1;
+      }
+      if(!p2.dwz) {
+        return -1;
+      }
+      if(p1.dwz < p2.dwz) {
+        return 1;
+      }
+      if(p1.dwz > p2.dwz) {
+        return -1;
+      }
+      return 0;
+    });
+  }
 
+  pushParticipantToTeam(participant: ParticipationEligibility, index: number, teamNumber: number) {
+    this.teams[teamNumber-1].participants.push(participant);
+    this.availablePlayers.splice(index, 1);
   }
 }
