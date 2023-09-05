@@ -19,6 +19,7 @@ export class EditTeamsComponent implements OnChanges {
   venues: Venue[] = [];
   availablePlayers: ParticipationEligibility[] = [];
   teams: Team[] = [];
+  organizationId: number = 0;
 
   constructor(private venueService: VenueService,
               private route: ActivatedRoute,
@@ -42,6 +43,9 @@ export class EditTeamsComponent implements OnChanges {
       switchMap(organizationId =>
         this.organizationService.getOrganizationSetup(parseInt(organizationId)))
     ).subscribe(response => this.setAvailablePlayersAndTeams(response));
+    this.route.paramMap.pipe(
+      map(params => params.get('organizationId')!))
+      .subscribe(value => this.organizationId = parseInt(value));
   }
 
   private setAvailablePlayersAndTeams(organizationSetup: OrganizationSetup) {
@@ -60,5 +64,35 @@ export class EditTeamsComponent implements OnChanges {
         event.currentIndex,
       );
     }
+  }
+
+  moveToAvailablePlayers(teamNumber: number, index: number) {
+    let player: ParticipationEligibility = this.teams[teamNumber].participants[index];
+    this.availablePlayers.push(player);
+    this.teams[teamNumber].participants.splice(index, 1);
+  }
+
+  addNewTeam() {
+    this.teams.push({
+      organizationId: this.organizationId,
+      number: this.teams.length +1,
+      participants: []
+    })
+  }
+
+  deleteLastTeam() {
+    const lastTeam = this.teams[this.teams.length-1];
+    while (lastTeam.participants.length > 0) {
+      this.moveToAvailablePlayers(this.teams.length-1, lastTeam.participants.length-1);
+    }
+    this.teams.pop();
+  }
+
+  sortAvailablePlayersByName() {
+
+  }
+
+  sortAvailablePlayersByRating() {
+
   }
 }

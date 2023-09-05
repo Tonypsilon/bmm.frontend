@@ -7,6 +7,11 @@
       <mat-card class="bmm-vertical-split-container">
         <mat-card-header>
           <mat-card-title>Verfügbare Spieler</mat-card-title>
+          <span class="spacer"></span>
+          <button mat-icon-button color="primary">
+            <mat-icon>sort_by_alpha</mat-icon></button>
+          <button mat-icon-button color="primary">
+            <mat-icon>format_list_numbered_rtl</mat-icon></button>
         </mat-card-header>
         <mat-card-content>
           <div cdkDropList
@@ -41,7 +46,8 @@
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   {{ player.surname}}, {{player.forename}} <span class="spacer"></span>
                   <ng-container *ngIf="player.dwz">{{ player.dwz }}</ng-container>
-                  <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+                  <button mat-icon-button (click)="moveToAvailablePlayers(i, j)" color="warn">
+                    <mat-icon>delete</mat-icon></button>
                 </div>
               </div>
             </mat-card-content>
@@ -51,9 +57,9 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" style="margin-right:8px">
+    <button mat-raised-button color="primary" style="margin-right:8px" (click)="addNewTeam()">
       <mat-icon>add</mat-icon> Mannschaft hinzufügen</button>
-    <button mat-raised-button color="primary" style="margin-right:8px">
+    <button mat-raised-button color="primary" style="margin-right:8px" (click)="deleteLastTeam()">
       <mat-icon>delete</mat-icon> Letzte Mannschaft entfernen</button>
     <button mat-raised-button color="primary" style="margin-right:8px">Speichern</button>
   </mat-card-actions>
