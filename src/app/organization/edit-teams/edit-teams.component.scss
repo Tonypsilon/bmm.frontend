@@ -55,3 +55,8 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+.bmm-scrollable-card {
+  max-height: 75vh;
+  overflow-y: auto;
+}

@@ -131,4 +131,8 @@ export class EditTeamsComponent implements OnChanges {
     this.teams[teamNumber-1].participants.push(participant);
     this.availablePlayers.splice(index, 1);
   }
+
+  submit() {
+
+  }
 }
