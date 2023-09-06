@@ -6,5 +6,6 @@ export interface Team {
   number: number;
   venueId?: number;
   name?: string;
-  participants: ParticipationEligibility[]
+  participants: ParticipationEligibility[];
+  captainUsername?: string;
 }

@@ -53,6 +53,8 @@ import { EditTeamsComponent } from './organization/edit-teams/edit-teams.compone
 import { OrganizationManagementComponent } from './organization/organization-management/organization-management.component';
 import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
 import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
+import { EditTeamsDialogComponent } from './organization/edit-teams-dialog/edit-teams-dialog.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -86,7 +88,8 @@ import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} fr
     VenueManagementFormComponent,
     VenueComponent,
     EditTeamsComponent,
-    OrganizationManagementComponent
+    OrganizationManagementComponent,
+    EditTeamsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +115,8 @@ import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} fr
     CdkFixedSizeVirtualScroll,
     CdkVirtualForOf,
     CdkDropList,
-    CdkDrag
+    CdkDrag,
+    MatTooltipModule
   ],
   providers: [
     {

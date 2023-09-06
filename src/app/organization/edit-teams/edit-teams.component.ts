@@ -3,12 +3,14 @@ import {Venue} from "../../shared/data/venue";
 import {Team} from "../../shared/data/team";
 import {ParticipationEligibility} from "../../shared/data/participationEligibility";
 import {VenueService} from "../../shared/venue.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MessageService} from "../../messages/message.service";
 import {map, switchMap} from "rxjs";
 import {OrganizationService} from "../../shared/organization.service";
 import {OrganizationSetup} from "../../shared/data/organization-setup";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {EditTeamsDialogComponent} from "../edit-teams-dialog/edit-teams-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'bmm-edit-teams',
@@ -20,10 +22,14 @@ export class EditTeamsComponent implements OnChanges {
   availablePlayers: ParticipationEligibility[] = [];
   teams: Team[] = [];
   organizationId: number = 0;
+  selectedVenues: Venue[] = [];
+  teamCaptains: string[] = [];
 
   constructor(private venueService: VenueService,
               private route: ActivatedRoute,
               private organizationService: OrganizationService,
+              public dialog: MatDialog,
+              private router: Router,
               private messageService: MessageService) {
     this.setupData();
   }
@@ -133,6 +139,31 @@ export class EditTeamsComponent implements OnChanges {
   }
 
   submit() {
-
+    let dialogRef;
+    dialogRef = this.dialog.open(EditTeamsDialogComponent, {
+      data: {
+        availableVenues: this.venues,
+        numberOfTeams: this.teams.length,
+        selectedVenues: this.selectedVenues,
+        teamCaptains: this.teamCaptains
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != "cancel") {
+        if (this.selectedVenues.length != this.teams.length || this.teamCaptains.length != this.teams.length) {
+          this.messageService.error("Für jede Mannschaft muss ein Spielort und ein Mannschaftsleiter ausgewählt sein!");
+          return;
+        }
+        for(let i=0; i<this.teams.length; i++) {
+          this.teams[i].venueId = this.selectedVenues[i].id;
+          this.teams[i].captainUsername = this.teamCaptains[i];
+        }
+        this.organizationService.putOrganizationSetup(this.organizationId, this.teams)
+            .subscribe(result => {
+              this.messageService.success("Mannschaften wurden erfolgreich aktualisiert.");
+              this.router.navigate(['/admin/home']);
+            });
+      }
+    });
   }
 }

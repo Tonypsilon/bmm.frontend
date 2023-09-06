@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {OrganizationSetup} from "./data/organization-setup";
+import {Team} from "./data/team";
 
 @Injectable({
   providedIn: 'root'
@@ -15,4 +16,8 @@ export class OrganizationService {
     + organizationId + '/setup');
   }
 
+  putOrganizationSetup(organizationId: number, teams: Team[]): Observable<Team[]> {
+    return this.http.put<Team[]>('//localhost:8080/organizations/'
+    + organizationId + '/setup', teams);
+  }
 }

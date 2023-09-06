@@ -71,7 +71,8 @@
       <mat-icon>add</mat-icon> Mannschaft hinzufügen</button>
     <button mat-raised-button color="primary" style="margin-right:8px" (click)="deleteLastTeam()">
       <mat-icon>delete</mat-icon> Letzte Mannschaft entfernen</button>
-    <button mat-raised-button color="primary" style="margin-right:8px">Speichern</button>
+    <button mat-raised-button color="primary" style="margin-right:8px" (click)="submit()">
+      Speichern</button>
   </mat-card-actions>
 </mat-card>
 <!--<pre>{{ availablePlayers | json }}</pre>
