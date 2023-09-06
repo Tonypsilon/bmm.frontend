@@ -28,7 +28,12 @@ export class UserFormComponent implements OnInit {
         nonNullable: true,
         validators: Validators.required
       })
-    })
+    }),
+    email: new FormControl('', {
+      nonNullable: true,
+      validators: Validators.required
+    }),
+    phone: new FormControl('')
   })
 
   ngOnInit(): void {
@@ -39,9 +44,10 @@ export class UserFormComponent implements OnInit {
     if(formValue.password.password1 === formValue.password.password2) {
       const newUser: User = {
         username : formValue.name,
-        password : formValue.password.password1
+        password : formValue.password.password1,
+        email: formValue.email,
+        phone: formValue.phone?? ''
       };
-      console.log(newUser);
     this.submitUser.emit(newUser);
     } else {
       console.log('Passwords dont match!');

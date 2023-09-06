@@ -19,7 +19,7 @@ export class UserCreateComponent implements OnInit {
 
   create(user: User) {
     this.userService.create(user).subscribe(createdUser => {
-      this.messageService.success('Benutzer ' + createdUser.username + 'erfolgreich erstellt.');
+      this.messageService.success('Benutzer ' + createdUser.username + ' erfolgreich erstellt.');
     });
   }
 
