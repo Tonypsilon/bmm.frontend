@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {SelectMultipleClubsComponent} from "./select-multiple-clubs/select-multiple-clubs.component";
 import {ClubService} from "../../../shared/club.service";
 import { Observable} from "rxjs";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'bmm-create-organization',
@@ -16,6 +17,8 @@ import { Observable} from "rxjs";
 })
 export class CreateOrganizationComponent implements OnInit {
   availableClubs$: Observable<IdAndLabel[]>;
+
+  private apiUrl = environment.apiUrl;
 
   @Input() clubs: IdAndLabel[] = [];
   @Input() seasons: IdAndLabel[] = [];
@@ -82,7 +85,7 @@ export class CreateOrganizationComponent implements OnInit {
   }
 
   private postOrganization(organization: Organization) {
-    this.http.post<Organization>('//localhost:8080/organizations', organization)
+    this.http.post<Organization>(this.apiUrl + '/organizations', organization)
       .subscribe(createdOrganization => {
         this.messageService.success('Organisation '
           + createdOrganization.name

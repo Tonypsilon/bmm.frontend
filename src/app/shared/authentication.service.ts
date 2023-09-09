@@ -4,6 +4,7 @@ import { Authentication } from './data/authentication';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {MessageService} from "../messages/message.service";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class AuthenticationService {
 
   private _isAuthenticated$ = new BehaviorSubject(false);
   readonly isAuthenticated$ = this._isAuthenticated$.asObservable();
+
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -28,7 +31,7 @@ export class AuthenticationService {
       })
     }
 
-    this.http.get<Authentication>('//localhost:8080/user', httpOptions).subscribe(
+    this.http.get<Authentication>(this.apiUrl + '/user', httpOptions).subscribe(
       res => {
         if(res.username === username) {
           this._authenticationData$.next(res);
@@ -42,7 +45,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.http.post('//localhost:8080/administration/logout', {}).subscribe(
+    this.http.post(this.apiUrl + '/administration/logout', {}).subscribe(
       res => {
         this._isAuthenticated$.next(false);
       }

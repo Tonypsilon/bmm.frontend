@@ -6,6 +6,7 @@ import {map, Observable} from 'rxjs';
 import {Season} from "../../../shared/data/season";
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../../../messages/message.service";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'bmm-season-admin-create',
@@ -14,6 +15,8 @@ import {MessageService} from "../../../messages/message.service";
 })
 export class SeasonAdminCreateComponent implements OnInit {
   seasons$: Observable<IdAndLabel[]>;
+
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient,
               private seasonService: SeasonService,
@@ -33,7 +36,7 @@ export class SeasonAdminCreateComponent implements OnInit {
       seasonId: seasonAdminAsIdAndLabel.id,
       username: seasonAdminAsIdAndLabel.label
     };
-    this.http.post<SeasonAdmin>('//localhost:8080/seasonadmins', seasonAdmin)
+    this.http.post<SeasonAdmin>(this.apiUrl + '/seasonadmins', seasonAdmin)
       .subscribe(createdSeasonAdmin => this.messageService.success(
         'Benutzer ' + createdSeasonAdmin.username +
         ' wurde erfolgreich zum Saisonadmin für die Saison mit ID '

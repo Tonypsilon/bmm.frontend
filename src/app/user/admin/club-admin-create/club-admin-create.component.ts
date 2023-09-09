@@ -6,6 +6,7 @@ import {ClubService} from "../../../shared/club.service";
 import {MessageService} from "../../../messages/message.service";
 import {Club} from "../../../shared/data/club";
 import {ClubAdmin} from "../../../shared/data/club-admin";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'bmm-club-admin-create',
@@ -14,6 +15,8 @@ import {ClubAdmin} from "../../../shared/data/club-admin";
 })
 export class ClubAdminCreateComponent implements OnInit {
   clubs$: Observable<IdAndLabel[]>;
+
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient,
               private clubService: ClubService,
@@ -46,7 +49,7 @@ export class ClubAdminCreateComponent implements OnInit {
       clubId: clubAdminAsIdAndLabel.id,
       username: clubAdminAsIdAndLabel.label
     };
-    this.http.post<ClubAdmin>('//localhost:8080/clubadmins', clubAdmin)
+    this.http.post<ClubAdmin>(this.apiUrl + '/clubadmins', clubAdmin)
       .subscribe(createdClubAdmin => this.messageService.success(
         'Benutzer ' + createdClubAdmin.username +
         ' wurde erfolgreich zum Vereinsadmin für den Verein mit ID '

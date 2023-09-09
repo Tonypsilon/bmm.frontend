@@ -3,20 +3,23 @@ import { Injectable } from '@angular/core';
 import { Season } from './data/season';
 import {map, Observable} from 'rxjs';
 import {IdAndLabel} from "./data/id-and-label";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SeasonService {
 
+  private apiUrl = environment.apiUrl;
+
   constructor(private http: HttpClient) { }
 
   create(season: Season): Observable<Season> {
-    return this.http.post<Season>('//localhost:8080/seasons', season);
+    return this.http.post<Season>(this.apiUrl + '/seasons', season);
   }
 
   getAllSeasons(): Observable<Season[]> {
-    return this.http.get<Season[]>('//localhost:8080/seasons');
+    return this.http.get<Season[]>(this.apiUrl + '/seasons');
   }
 
   getAllSeasonsAsIdAndLabels(): Observable<IdAndLabel[]> {
