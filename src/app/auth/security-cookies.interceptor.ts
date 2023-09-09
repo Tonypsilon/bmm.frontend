@@ -23,13 +23,7 @@ export class SecurityCookiesInterceptor implements HttpInterceptor {
    */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     req = req.clone({withCredentials: true});
-    if(req.method != 'GET' && req.method != 'HEAD') {
-      console.log('neither get nor head');
-      let xsrfToken = this.tokenExtractor.getToken() as string;
-      if(xsrfToken != null && !req.headers.has(this.cookieHeaderName)) {
-        req = req.clone({headers: req.headers.set(this.cookieHeaderName, xsrfToken)});
-      }
-    }
+
     return next.handle(req);
   }
 
