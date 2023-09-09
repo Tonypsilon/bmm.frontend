@@ -52,7 +52,7 @@
               (cdkDropListDropped)="drop($event)">
                 <div *ngFor="let player of team.participants index as j" cdkDrag
                 class="bmm-drop-list-box">
-                  {{ i+1 }}<ng-container *ngIf="j<10">0</ng-container>{{ j+1 }}
+                  {{ i+1 }}<ng-container *ngIf="j+1<10">0</ng-container>{{ j+1 }}
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   {{ player.surname}}, {{player.forename}} <span class="spacer"></span>
                   <ng-container *ngIf="player.dwz">{{ player.dwz }}</ng-container>
