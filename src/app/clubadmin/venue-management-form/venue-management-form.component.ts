@@ -2,7 +2,7 @@ import {Component, OnChanges} from '@angular/core';
 import {map, Observable, switchMap} from "rxjs";
 import {Venue} from "../../shared/data/venue";
 import {VenueService} from "../../shared/venue.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MessageService} from "../../messages/message.service";
 
@@ -24,7 +24,8 @@ export class VenueManagementFormComponent implements OnChanges {
 
   constructor(private venueService: VenueService,
               private route: ActivatedRoute,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private router: Router) {
     this.venues$ = this.route.paramMap.pipe(
       map(params => params.get('clubId')!),
       switchMap(clubId => this.venueService.getVenuesOfClub(parseInt(clubId)))
@@ -57,7 +58,10 @@ export class VenueManagementFormComponent implements OnChanges {
               return venue;
             }
           ))
-          .subscribe(response => this.messageService.success("Spielorte erfolgreich gespeichert."))
+          .subscribe(response => {
+            this.router.navigate(['/admin/home']);
+            this.messageService.success("Spielorte erfolgreich gespeichert.");
+          })
     );
   }
 
