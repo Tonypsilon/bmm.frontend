@@ -48,7 +48,9 @@ export class EditTeamsComponent implements OnChanges {
       map(params => params.get('organizationId')!),
       switchMap(organizationId =>
         this.organizationService.getOrganizationSetup(parseInt(organizationId)))
-    ).subscribe(response => this.setAvailablePlayersAndTeams(response));
+    ).subscribe(response => {
+      this.setAvailablePlayersAndTeams(response);
+    });
     this.route.paramMap.pipe(
       map(params => params.get('organizationId')!))
       .subscribe(value => this.organizationId = parseInt(value));
@@ -57,6 +59,10 @@ export class EditTeamsComponent implements OnChanges {
   private setAvailablePlayersAndTeams(organizationSetup: OrganizationSetup) {
     this.availablePlayers = organizationSetup.availablePlayers;
     this.teams = organizationSetup.teams;
+    this.teamCaptains = organizationSetup.teams.map(team => team.captainUsername!);
+    this.selectedVenues = organizationSetup.teams
+      .map(team => this.venues.filter(venue => venue.id == team.venueId))
+      .flat();
   }
 
   drop(event: CdkDragDrop<ParticipationEligibility[]>) {
