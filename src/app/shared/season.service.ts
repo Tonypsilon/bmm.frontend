@@ -27,6 +27,13 @@ export class SeasonService {
       .pipe(map(seasons => this.seasonsToIdAndLabels(seasons)));
   }
 
+  patchSeasonStage(seasonName: string, stage: string): Observable<Season> {
+    return this.http.patch<Season>(this.apiUrl + '/seasons/' + seasonName, {
+      seasonName: seasonName,
+      stage: stage
+    })
+  }
+
   public seasonsToIdAndLabels(seasons: Season[]) : IdAndLabel[] {
     return seasons.filter(season => season.id !== undefined)
       .map(season => this.seasonToIdAndLabel(season));

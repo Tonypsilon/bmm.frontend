@@ -19,7 +19,7 @@
       </div>
       <div *ngIf="authentication && authentication.seasons.length">
         <mat-card>
-          <bmm-season-admin></bmm-season-admin>
+          <bmm-season-admin [seasons]="authentication.seasons"></bmm-season-admin>
         </mat-card>
         <br>
       </div>

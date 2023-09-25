@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {IdAndLabel} from "../../shared/data/id-and-label";
 
 @Component({
   selector: 'bmm-season-admin',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./season-admin.component.scss']
 })
 export class SeasonAdminComponent {
-
+  @Input() seasons: IdAndLabel[] = [];
 }

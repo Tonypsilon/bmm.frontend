@@ -55,6 +55,7 @@ import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
 import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import { EditTeamsDialogComponent } from './organization/edit-teams-dialog/edit-teams-dialog.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { SeasonStageComponent } from './season-stage/season-stage.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     VenueComponent,
     EditTeamsComponent,
     OrganizationManagementComponent,
-    EditTeamsDialogComponent
+    EditTeamsDialogComponent,
+    SeasonStageComponent
   ],
   imports: [
     BrowserModule,
