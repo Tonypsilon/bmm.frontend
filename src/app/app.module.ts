@@ -56,6 +56,7 @@ import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} fr
 import { EditTeamsDialogComponent } from './organization/edit-teams-dialog/edit-teams-dialog.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { SeasonStageComponent } from './season-stage/season-stage.component';
+import { PlayingDateComponent } from './playing-date/playing-date.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { SeasonStageComponent } from './season-stage/season-stage.component';
     EditTeamsComponent,
     OrganizationManagementComponent,
     EditTeamsDialogComponent,
-    SeasonStageComponent
+    SeasonStageComponent,
+    PlayingDateComponent
   ],
   imports: [
     BrowserModule,
