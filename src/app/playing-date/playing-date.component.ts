@@ -29,7 +29,7 @@ export class PlayingDateComponent {
       nonNullable: true,
       validators: Validators.required
     })
-  })
+  });
 
   submitForm() {
     const formValue = this.form.getRawValue();

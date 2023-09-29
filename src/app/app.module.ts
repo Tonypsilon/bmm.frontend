@@ -57,6 +57,7 @@ import { EditTeamsDialogComponent } from './organization/edit-teams-dialog/edit-
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { SeasonStageComponent } from './season-stage/season-stage.component';
 import { PlayingDateComponent } from './playing-date/playing-date.component';
+import { DivisionCreateComponent } from './division-create/division-create.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { PlayingDateComponent } from './playing-date/playing-date.component';
     OrganizationManagementComponent,
     EditTeamsDialogComponent,
     SeasonStageComponent,
-    PlayingDateComponent
+    PlayingDateComponent,
+    DivisionCreateComponent
   ],
   imports: [
     BrowserModule,
