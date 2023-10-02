@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Mannschaften zu Staffeln zuweisen</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field>
+            <mat-label>Saison</mat-label>
+            <mat-select [(ngModel)]="season">
+                <mat-option *ngFor="let s of seasons" [value]="s"> {{ s.label }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-stroked-button *ngIf="season"
+                [routerLink]="['/admin/seasons', season.id, 'teamdivisionlinks']">Bearbeiten</button>
+        <button mat-stroked-button *ngIf="!season" [disabled]="true">Bearbeiten</button>
+    </mat-card-actions>
+</mat-card>

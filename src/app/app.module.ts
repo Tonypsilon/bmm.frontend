@@ -58,6 +58,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import { SeasonStageComponent } from './season-stage/season-stage.component';
 import { PlayingDateComponent } from './playing-date/playing-date.component';
 import { DivisionCreateComponent } from './division-create/division-create.component';
+import { TeamDivisionLinkComponent } from './team-division-link/team-division-link.component';
+import { EditTeamDivisionLinksComponent } from './edit-team-division-links/edit-team-division-links.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +97,9 @@ import { DivisionCreateComponent } from './division-create/division-create.compo
     EditTeamsDialogComponent,
     SeasonStageComponent,
     PlayingDateComponent,
-    DivisionCreateComponent
+    DivisionCreateComponent,
+    TeamDivisionLinkComponent,
+    EditTeamDivisionLinksComponent
   ],
   imports: [
     BrowserModule,
