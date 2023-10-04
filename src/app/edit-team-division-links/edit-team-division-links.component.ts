@@ -78,7 +78,7 @@ export class EditTeamDivisionLinksComponent implements OnChanges {
         this.enhancedTeamDivisionLinks.map(etdl =>  {
           return {
             teamId: etdl.team.id,
-            division: etdl.division?.id,
+            divisionId: etdl.division?.id,
             number: etdl.number
           };
         })
