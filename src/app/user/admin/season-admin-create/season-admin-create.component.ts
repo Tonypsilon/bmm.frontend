@@ -2,11 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {SeasonService} from "../../../shared/season.service";
 import {SeasonAdmin} from "../../../shared/data/season-admin";
 import {IdAndLabel} from "../../../shared/data/id-and-label";
-import {map, Observable} from 'rxjs';
-import {Season} from "../../../shared/data/season";
+import {Observable} from 'rxjs';
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../../../messages/message.service";
-import { environment } from 'src/environments/environment';
+import {environment} from 'src/environments/environment';
 
 @Component({
   selector: 'bmm-season-admin-create',
