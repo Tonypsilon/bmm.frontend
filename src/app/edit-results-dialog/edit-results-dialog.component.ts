@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {EditResultsDialogData} from "../shared/data/edit-results-dialog-data";
 
 @Component({
-  selector: 'bmm-edit-results-dialog',
+  selector: 'bmm-edit-games-dialog',
   templateUrl: './edit-results-dialog.component.html',
   styleUrls: ['./edit-results-dialog.component.scss']
 })

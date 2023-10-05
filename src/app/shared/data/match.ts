@@ -10,5 +10,5 @@ export interface Match {
     numberOfBoards: number;
     availableReferees: IdAndLabel[];
     selectedReferee: IdAndLabel;
-    results: Game[];
+    games: Game[];
 }

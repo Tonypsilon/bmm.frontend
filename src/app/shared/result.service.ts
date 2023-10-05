@@ -17,5 +17,5 @@ export class ResultService {
     return this.http.get<Match>(this.apiUrl + '/matches/' + matchId + '/info');
   }
 
-  //putResult(matchId: number, results: Game[])
+  //putResult(matchId: number, games: Game[])
 }

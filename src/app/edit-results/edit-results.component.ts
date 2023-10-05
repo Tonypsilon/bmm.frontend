@@ -10,7 +10,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {EditResultsDialogComponent} from "../edit-results-dialog/edit-results-dialog.component";
 
 @Component({
-  selector: 'bmm-edit-results',
+  selector: 'bmm-edit-games',
   templateUrl: './edit-results.component.html',
   styleUrls: ['./edit-results.component.scss']
 })
@@ -22,7 +22,7 @@ export class EditResultsComponent implements OnChanges {
   numberOfBoards: number = 0;
   availableReferees: IdAndLabel[] = [];
   selectedReferee?: IdAndLabel;
-  results: Game[] = [];
+  games: Game[] = [];
 
   constructor(private resultService: ResultService,
               private route: ActivatedRoute,
@@ -49,16 +49,22 @@ export class EditResultsComponent implements OnChanges {
       this.numberOfBoards = response.numberOfBoards;
       this.availableReferees = response.availableReferees;
       this.selectedReferee = response.selectedReferee;
-      this.results = response.results;
+      this.games = response.games;
     });
   }
 
   private participantsChanged() {
-    for (let i = 0; i < this.results.length; i++) {
-      if(this.selectedHomePlayers.at(i) != this.results.at(i)!.homeParticipant) {
+    if(!this.games) {
+      return false;
+    }
+    if(this.games.length != this.numberOfBoards) {
+      return true;
+    }
+    for (let i = 0; i < this.games.length; i++) {
+      if(this.selectedHomePlayers.at(i) != this.games.at(i)!.homeParticipant) {
         return true;
       }
-      if(this.selectedAwayPlayers.at(i) != this.results.at(i)!.awayParticipant) {
+      if(this.selectedAwayPlayers.at(i) != this.games.at(i)!.awayParticipant) {
         return true;
       }
     }
@@ -71,15 +77,19 @@ export class EditResultsComponent implements OnChanges {
       this.messageService.error("Es wurde nicht die richtige Anzahl Spieler ausgewählt!");
       return;
     }
+    if(!this.selectedReferee) {
+      this.messageService.error("Es muss ein Schiedsrichter ausgewählt sein!");
+      return;
+    }
     if (this.participantsChanged()) {
-      for(let result of this.results) {
-        result.result = '?:?';
+      for(let game of this.games) {
+        game.result.label = '?:?';
       }
     }
     let dialogRef;
     dialogRef = this.dialog.open(EditResultsDialogComponent, {
       data: {
-        results: this.results,
+        results: this.games,
         closeMatch: false
       }
     });

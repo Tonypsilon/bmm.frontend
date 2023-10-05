@@ -32,7 +32,7 @@ const routes: Routes = [
   {path: 'admin/organizations/:organizationId/teams', component: EditTeamsComponent},
   {path: 'admin/seasons/:seasonId/teamdivisionlinks', component: EditTeamDivisionLinksComponent},
   {path: 'admin/organizations/:organizationId/teamadmins', component: CreateTeamAdminComponent},
-  {path: 'admin/matches/:matchId/results', component: EditResultsComponent}
+  {path: 'admin/matches/:matchId/games', component: EditResultsComponent}
 ];
 
 @NgModule({
