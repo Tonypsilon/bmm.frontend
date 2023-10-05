@@ -27,6 +27,7 @@ export class ResultManagementComponent {
       state: 'IN_CLARIFICATION'
     }).subscribe(response => {
       this.messageService.success('Wettkampf befindet sich nun in Klärung.');
+      this.match = undefined;
       this.authService.refreshAuthenticationResponse();
     });
 

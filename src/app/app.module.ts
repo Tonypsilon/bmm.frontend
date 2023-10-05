@@ -64,6 +64,8 @@ import { TeamAdminManagementComponent } from './team-admin-management/team-admin
 import { CreateTeamAdminComponent } from './create-team-admin/create-team-admin.component';
 import { ResultManagementComponent } from './result-management/result-management.component';
 import { EditResultsComponent } from './edit-results/edit-results.component';
+import {MatListModule} from "@angular/material/list";
+import { EditResultsDialogComponent } from './edit-results-dialog/edit-results-dialog.component';
 
 @NgModule({
   declarations: [
@@ -107,35 +109,37 @@ import { EditResultsComponent } from './edit-results/edit-results.component';
     TeamAdminManagementComponent,
     CreateTeamAdminComponent,
     ResultManagementComponent,
-    EditResultsComponent
+    EditResultsComponent,
+    EditResultsDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatDividerModule,
-    FormsModule,
-    CdkDropListGroup,
-    CdkVirtualScrollViewport,
-    CdkFixedSizeVirtualScroll,
-    CdkVirtualForOf,
-    CdkDropList,
-    CdkDrag,
-    MatTooltipModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatCardModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatDividerModule,
+        FormsModule,
+        CdkDropListGroup,
+        CdkVirtualScrollViewport,
+        CdkFixedSizeVirtualScroll,
+        CdkVirtualForOf,
+        CdkDropList,
+        CdkDrag,
+        MatTooltipModule,
+        MatListModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

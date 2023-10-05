@@ -1,0 +1,23 @@
+.bmm-vertical-split-container {
+  width: 40%;
+  height: 70%;
+  max-width: 100%;
+  min-width: 150px;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.bmm-scrollable-card {
+  max-height: calc(100vh - 189px);
+  overflow-y: auto;
+}
+
+.bmm-mat-list-option {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -1,1 +1,40 @@
-<p>edit-results works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Spieler auswählen</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-card class="bmm-vertical-split-container bmm-scrollable-card">
+            <mat-card-header>
+                <mat-card-title>Heimmannschaft</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-selection-list [(ngModel)]="selectedHomePlayers">
+                    <mat-list-option *ngFor="let p of availableHomePlayers" [value]="p">
+                        {{p.code}} {{p.surname}}, {{p.forename}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="bmm-vertical-split-container bmm-scrollable-card">
+            <mat-card-header>
+                <mat-card-title>Gastmannschaft</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-selection-list [(ngModel)]="selectedAwayPlayers">
+                    <mat-list-option *ngFor="let p of availableAwayPlayers" [value]="p">
+                        {{p.code}} {{p.surname}}, {{p.forename}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </mat-card-content>
+        </mat-card>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-form-field>
+            <mat-label>Schiedsrichter</mat-label>
+            <mat-select [(ngModel)]="selectedReferee" [panelWidth]="null">
+                <mat-option *ngFor="let r of availableReferees" [value]="r">{{ r.label }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-stroked-button (click)="submit()">Weiter zur Ergebniseingabe</button>
+    </mat-card-actions>
+</mat-card>
