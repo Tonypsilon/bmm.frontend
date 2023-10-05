@@ -44,6 +44,16 @@ export class AuthenticationService {
       });
   }
 
+  refreshAuthenticationResponse() {
+    this.http.get<Authentication>(this.apiUrl + '/user').subscribe(
+        res => {
+          if(res.username) {
+            this._authenticationData$.next(res);
+            this._isAuthenticated$.next(true);
+          }
+        });
+  }
+
   logout() {
     this.http.post(this.apiUrl + '/administration/logout', {}).subscribe(
       res => {
