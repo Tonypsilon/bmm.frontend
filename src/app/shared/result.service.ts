@@ -17,5 +17,11 @@ export class ResultService {
     return this.http.get<Match>(this.apiUrl + '/matches/' + matchId + '/info');
   }
 
-  //putResult(matchId: number, games: Game[])
+  putResultsForMatch(matchId: number, games: Game[], refereeId: number, close: boolean): Observable<Match> {
+    return this.http.put<Match>(this.apiUrl + '/matches/' + matchId + '/results/played', {
+      games: games,
+      refereeId: refereeId,
+      closeMatch: close
+    });
+  }
 }

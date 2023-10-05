@@ -8,7 +8,7 @@
                 <mat-card-title>Heimmannschaft</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <mat-selection-list [(ngModel)]="selectedHomePlayers">
+                <mat-selection-list [(ngModel)]="selectedHomePlayers" [compareWith]="compareIds">
                     <mat-list-option *ngFor="let p of availableHomePlayers" [value]="p">
                         {{p.code}} {{p.surname}}, {{p.forename}}
                     </mat-list-option>
@@ -20,7 +20,7 @@
                 <mat-card-title>Gastmannschaft</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <mat-selection-list [(ngModel)]="selectedAwayPlayers">
+                <mat-selection-list [(ngModel)]="selectedAwayPlayers" [compareWith]="compareIds">
                     <mat-list-option *ngFor="let p of availableAwayPlayers" [value]="p">
                         {{p.code}} {{p.surname}}, {{p.forename}}
                     </mat-list-option>
@@ -31,10 +31,11 @@
     <mat-card-actions>
         <mat-form-field>
             <mat-label>Schiedsrichter</mat-label>
-            <mat-select [(ngModel)]="selectedReferee" [panelWidth]="null">
+            <mat-select [(ngModel)]="selectedReferee" [compareWith]="compareIds" [panelWidth]="null">
                 <mat-option *ngFor="let r of availableReferees" [value]="r">{{ r.label }}</mat-option>
             </mat-select>
         </mat-form-field>
         <button mat-stroked-button (click)="submit()">Weiter zur Ergebniseingabe</button>
     </mat-card-actions>
 </mat-card>
+<pre>{{closeMatch | json}}</pre>

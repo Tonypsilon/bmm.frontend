@@ -1,1 +1,45 @@
-<p>edit-games-dialog works!</p>
+<h1 mat-dialog-title>Ergebnisse eingeben</h1>
+<div mat-dialog-content>
+    <table mat-table [dataSource]="data.results">
+        <!-- Board number column -->
+        <ng-container matColumnDef="num">
+            <th mat-header-cell *matHeaderCellDef>.</th>
+            <td mat-cell *matCellDef="let element index as i">{{i+1}}</td>
+        </ng-container>
+
+        <!-- Home player column -->
+        <ng-container matColumnDef="homeParticipant">
+            <th mat-header-cell *matHeaderCellDef>Heim</th>
+            <td mat-cell *matCellDef="let game">{{game.homeParticipant.code}} {{game.homeParticipant.surname}}, {{game.homeParticipant.forename}}</td>
+        </ng-container>
+
+        <!-- Result selection column -->
+        <ng-container matColumnDef="result">
+            <th mat-header-cell *matHeaderCellDef>Ergebnis</th>
+            <td mat-cell *matCellDef="let game index as i">
+                <mat-form-field>
+                    <mat-label>Ergebnis</mat-label>
+                    <mat-select [(ngModel)]="data.results.at(i)!.result" [compareWith]="compareLabels" [panelWidth]="null">
+                        <mat-option *ngFor="let r of possibleResults" [value]="r">{{ r.label }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <!-- Away player column -->
+        <ng-container matColumnDef="awayParticipant">
+            <th mat-header-cell *matHeaderCellDef>Gast</th>
+            <td mat-cell *matCellDef="let game">{{game.awayParticipant.code}} {{game.awayParticipant.surname}}, {{game.awayParticipant.forename}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['num', 'homeParticipant', 'result','awayParticipant']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['num', 'homeParticipant', 'result', 'awayParticipant'];"></tr>
+    </table>
+    <mat-checkbox [(ngModel)]="data.closeMatch">Wettkampf schließen</mat-checkbox>
+</div>
+<div mat-dialog-actions>
+    <button mat-stroked-button (click)="cancel()">Abbrechen</button>
+    <button mat-stroked-button [mat-dialog-close]="data">Speichern</button>
+</div>
+<pre mat-dialog-content>{{data.closeMatch | json}}</pre>
+
