@@ -7,4 +7,5 @@ export interface Authentication {
   clubs: IdAndLabel[];
   organizations: IdAndLabel[];
   teams: IdAndLabel[];
+  matches: IdAndLabel[];
 }

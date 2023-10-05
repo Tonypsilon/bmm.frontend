@@ -37,7 +37,7 @@
       </div>
       <div *ngIf="authentication && authentication.teams.length">
         <mat-card>
-          <bmm-team-admin></bmm-team-admin>
+          <bmm-team-admin [matches]="authentication.matches"></bmm-team-admin>
         </mat-card>
         <br>
       </div>

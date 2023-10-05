@@ -5,7 +5,7 @@
   <mat-card-content>
     <mat-form-field>
       <mat-label>Organisation</mat-label>
-      <mat-select [(ngModel)]="organization">
+      <mat-select [(ngModel)]="organization" [panelWidth]="null">
         <mat-option *ngFor="let o of organizations" [value]="o"> {{ o.label}} </mat-option>
       </mat-select>
     </mat-form-field>

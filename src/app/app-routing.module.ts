@@ -15,6 +15,7 @@ import {VenueManagementFormComponent} from "./clubadmin/venue-management-form/ve
 import {EditTeamsComponent} from "./organization/edit-teams/edit-teams.component";
 import {EditTeamDivisionLinksComponent} from "./edit-team-division-links/edit-team-division-links.component";
 import {CreateTeamAdminComponent} from "./create-team-admin/create-team-admin.component";
+import {EditResultsComponent} from "./edit-results/edit-results.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: 'admin/clubs/:clubId/venues', component: VenueManagementFormComponent},
   {path: 'admin/organizations/:organizationId/teams', component: EditTeamsComponent},
   {path: 'admin/seasons/:seasonId/teamdivisionlinks', component: EditTeamDivisionLinksComponent},
-  {path: 'admin/organizations/:organizationId/teamadmins', component: CreateTeamAdminComponent}
+  {path: 'admin/organizations/:organizationId/teamadmins', component: CreateTeamAdminComponent},
+  {path: 'admin/matches/:matchId/results', component: EditResultsComponent}
 ];
 
 @NgModule({

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {IdAndLabel} from "../../shared/data/id-and-label";
 
 @Component({
   selector: 'bmm-team-admin',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./team-admin.component.scss']
 })
 export class TeamAdminComponent {
+  @Input() matches: IdAndLabel[] = [];
 
 }

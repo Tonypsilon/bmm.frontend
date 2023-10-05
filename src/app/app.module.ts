@@ -62,6 +62,8 @@ import { TeamDivisionLinkComponent } from './team-division-link/team-division-li
 import { EditTeamDivisionLinksComponent } from './edit-team-division-links/edit-team-division-links.component';
 import { TeamAdminManagementComponent } from './team-admin-management/team-admin-management.component';
 import { CreateTeamAdminComponent } from './create-team-admin/create-team-admin.component';
+import { ResultManagementComponent } from './result-management/result-management.component';
+import { EditResultsComponent } from './edit-results/edit-results.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +105,9 @@ import { CreateTeamAdminComponent } from './create-team-admin/create-team-admin.
     TeamDivisionLinkComponent,
     EditTeamDivisionLinksComponent,
     TeamAdminManagementComponent,
-    CreateTeamAdminComponent
+    CreateTeamAdminComponent,
+    ResultManagementComponent,
+    EditResultsComponent
   ],
   imports: [
     BrowserModule,
