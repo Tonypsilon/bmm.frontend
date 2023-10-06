@@ -1,20 +1,29 @@
 <mat-drawer-container [hasBackdrop]="false" autosize>
     <mat-drawer #drawer [mode]="'side'" opened>
-        <mat-list>
-            <ng-container *ngFor="let d of divisions index as i">
-                <mat-divider *ngIf="i>0 && divisions.at(i-1)!.level < divisions.at(i)!.level"></mat-divider>
-                <button mat-flat-button style="margin: 4px" *ngIf="!division || division.id != d.id"
+      <mat-list>
+        <ng-container *ngFor="let d of divisions index as i">
+          <mat-divider *ngIf="i>0 && divisions.at(i-1)!.level < divisions.at(i)!.level"></mat-divider>
+          <button mat-flat-button style="margin: 4px" *ngIf="!division || division.id != d.id"
                         (click)="setDivision(d)">{{d.name}}</button>
-                <button mat-stroked-button style="margin: 4px" *ngIf="division && division.id == d.id"
+          <button mat-stroked-button style="margin: 4px" *ngIf="division && division.id == d.id"
                         (click)="setDivision(d)">{{d.name}}</button>
-                <br>
-            </ng-container>
+          <br>
+        </ng-container>
         </mat-list>
     </mat-drawer>
     <mat-drawer-content>
-        <button mat-icon-button (click)="drawer.open()" *ngIf="!drawer.opened"><mat-icon>chevron_right</mat-icon></button>
-        <button mat-icon-button (click)="drawer.close()" *ngIf="drawer.opened"><mat-icon>chevron_left</mat-icon></button>
-        <bmm-division [division]="division"></bmm-division>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <button mat-icon-button (click)="drawer.open()" *ngIf="!drawer.opened"><mat-icon>chevron_right</mat-icon></button>
+            <button mat-icon-button (click)="drawer.close()" *ngIf="drawer.opened"><mat-icon>chevron_left</mat-icon></button>
+            {{season ? season.name : 'Saison'}}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <bmm-division [division]="division"></bmm-division>
+        </mat-card-content>
+      </mat-card>
     </mat-drawer-content>
 </mat-drawer-container>
 

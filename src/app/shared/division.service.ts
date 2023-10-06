@@ -4,6 +4,7 @@ import {IdAndLabel} from "./data/id-and-label";
 import {Division} from "./data/division";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
+import {DivisionResults} from "./data/division-results";
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class DivisionService {
 
   getBySeason(seasonName: string): Observable<Division[]> {
     return this.http.get<Division[]>(this.apiUrl + '/divisions/' + seasonName);
+  }
+
+  getDivisionResults(divisionId: number): Observable<DivisionResults> {
+    return this.http.get<DivisionResults>(this.apiUrl + '/divisions/' + divisionId + '/results');
   }
 }

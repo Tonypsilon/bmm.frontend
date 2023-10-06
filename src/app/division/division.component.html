@@ -1,2 +1,29 @@
-<p>division works!</p>
-<pre>{{division}}</pre>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{division ? division.name : 'Staffel'}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-accordion multi>
+      <mat-expansion-panel *ngFor="let md of divisionResults?.matchdays">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Runde {{ md.round }}</mat-panel-title>
+          <mat-panel-description>{{ md.date }}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-accordion multi>
+          <mat-expansion-panel *ngFor="let m of md.matches">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="bmm-wide-title">{{m.homeTeamLabel}} : {{m.awayTeamLabel}}</mat-panel-title>
+              <mat-panel-description>{{m.venueLabel}}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let g of m.games index as i">
+              {{i+1}} {{g.homeParticipant.code}} {{g.homeParticipant.surname}}, {{g.homeParticipant.forename}}
+              {{g.homeParticipant.dwz}} {{g.result.label}}
+              {{g.awayParticipant.code}} {{g.awayParticipant.surname}}, {{g.awayParticipant.forename}}
+              {{g.awayParticipant.dwz}}
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>
