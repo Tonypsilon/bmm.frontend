@@ -1,23 +1,20 @@
-<mat-drawer-container [hasBackdrop]="false">
-    <mat-drawer #drawer [mode]="'side'">
-        <mat-drawer-container>
-            <mat-list>
-                <ng-container *ngFor="let d of divisions index as i">
-                    <mat-divider *ngIf="i>0 && divisions.at(i-1)!.level < divisions.at(i)!.level"></mat-divider>
-                    <button mat-flat-button style="margin: 4px" *ngIf="!division || division.id != d.id"
-                            (click)="setDivision(d)">{{d.name}}</button>
-                    <button mat-stroked-button style="margin: 4px" *ngIf="division && division.id == d.id"
-                            (click)="setDivision(d)">{{d.name}}</button>
-                    <br>
-                </ng-container>
-            </mat-list>
-        </mat-drawer-container>
+<mat-drawer-container [hasBackdrop]="false" autosize>
+    <mat-drawer #drawer [mode]="'side'" opened>
+        <mat-list>
+            <ng-container *ngFor="let d of divisions index as i">
+                <mat-divider *ngIf="i>0 && divisions.at(i-1)!.level < divisions.at(i)!.level"></mat-divider>
+                <button mat-flat-button style="margin: 4px" *ngIf="!division || division.id != d.id"
+                        (click)="setDivision(d)">{{d.name}}</button>
+                <button mat-stroked-button style="margin: 4px" *ngIf="division && division.id == d.id"
+                        (click)="setDivision(d)">{{d.name}}</button>
+                <br>
+            </ng-container>
+        </mat-list>
     </mat-drawer>
     <mat-drawer-content>
         <button mat-icon-button (click)="drawer.open()" *ngIf="!drawer.opened"><mat-icon>chevron_right</mat-icon></button>
         <button mat-icon-button (click)="drawer.close()" *ngIf="drawer.opened"><mat-icon>chevron_left</mat-icon></button>
-        <p>season works!</p>
-        <pre>{{division | json}}</pre>
+        <bmm-division [division]="division"></bmm-division>
     </mat-drawer-content>
 </mat-drawer-container>
 

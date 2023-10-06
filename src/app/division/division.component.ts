@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Division} from "../shared/data/division";
 
 @Component({
   selector: 'bmm-division',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./division.component.scss']
 })
 export class DivisionComponent {
+  @Input() division?: Division;
 
 }
