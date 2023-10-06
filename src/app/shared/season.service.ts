@@ -22,6 +22,10 @@ export class SeasonService {
     return this.http.get<Season[]>(this.apiUrl + '/seasons');
   }
 
+  getSeasonByName(seasonName: string): Observable<Season> {
+    return this.http.get<Season>(this.apiUrl + '/seasons/' + seasonName);
+  }
+
   getAllSeasonsAsIdAndLabels(): Observable<IdAndLabel[]> {
     return this.getAllSeasons()
       .pipe(map(seasons => this.seasonsToIdAndLabels(seasons)));

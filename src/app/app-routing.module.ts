@@ -16,6 +16,8 @@ import {EditTeamsComponent} from "./organization/edit-teams/edit-teams.component
 import {EditTeamDivisionLinksComponent} from "./edit-team-division-links/edit-team-division-links.component";
 import {CreateTeamAdminComponent} from "./create-team-admin/create-team-admin.component";
 import {EditResultsComponent} from "./edit-results/edit-results.component";
+import {SeasonComponent} from "./season/season.component";
+import {DivisionComponent} from "./division/division.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -32,7 +34,9 @@ const routes: Routes = [
   {path: 'admin/organizations/:organizationId/teams', component: EditTeamsComponent},
   {path: 'admin/seasons/:seasonId/teamdivisionlinks', component: EditTeamDivisionLinksComponent},
   {path: 'admin/organizations/:organizationId/teamadmins', component: CreateTeamAdminComponent},
-  {path: 'admin/matches/:matchId/games', component: EditResultsComponent}
+  {path: 'admin/matches/:matchId/games', component: EditResultsComponent},
+  {path: 'seasons/:seasonName/divisions/:divisionId', component: DivisionComponent},
+  {path: 'seasons/:seasonName', component: SeasonComponent}
 ];
 
 @NgModule({

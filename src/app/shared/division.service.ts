@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {IdAndLabel} from "./data/id-and-label";
 import {Division} from "./data/division";
 import {environment} from "../../environments/environment";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class DivisionService {
       numberOfBoards: numberOfBoards,
       numberOfTeams: numberOfTeams
     });
+  }
+
+  getBySeason(seasonName: string): Observable<Division[]> {
+    return this.http.get<Division[]>(this.apiUrl + '/divisions/' + seasonName);
   }
 }

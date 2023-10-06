@@ -2,7 +2,7 @@
   <button [routerLink]="['home']" mat-flat-button color="primary"><mat-icon>home</mat-icon></button>
   <button mat-flat-button [matMenuTriggerFor]="menu" color="primary">Saison</button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item *ngFor="let season of seasonNames">{{ season }}</button>
+    <button mat-menu-item *ngFor="let season of seasonNames" (click)="goToSeason(season)">{{ season }}</button>
   </mat-menu>
   <button [routerLink]="['/admin/home']" mat-flat-button color="primary" *ngIf="isAuthenticated"><mat-icon>edit</mat-icon></button>
   <span class="spacer"></span>

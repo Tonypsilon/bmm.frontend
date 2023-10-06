@@ -67,6 +67,9 @@ import { EditResultsComponent } from './edit-results/edit-results.component';
 import {MatListModule} from "@angular/material/list";
 import { EditResultsDialogComponent } from './edit-results-dialog/edit-results-dialog.component';
 import {MatTableModule} from "@angular/material/table";
+import { SeasonComponent } from './season/season.component';
+import { DivisionComponent } from './division/division.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
@@ -111,7 +114,9 @@ import {MatTableModule} from "@angular/material/table";
     CreateTeamAdminComponent,
     ResultManagementComponent,
     EditResultsComponent,
-    EditResultsDialogComponent
+    EditResultsDialogComponent,
+    SeasonComponent,
+    DivisionComponent
   ],
     imports: [
         BrowserModule,
@@ -140,7 +145,8 @@ import {MatTableModule} from "@angular/material/table";
         CdkDrag,
         MatTooltipModule,
         MatListModule,
-        MatTableModule
+        MatTableModule,
+        MatSidenavModule
     ],
   providers: [
     {
