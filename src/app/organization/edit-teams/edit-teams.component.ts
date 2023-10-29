@@ -22,6 +22,7 @@ export class EditTeamsComponent implements OnChanges {
   availablePlayers: ParticipationEligibility[] = [];
   teams: Team[] = [];
   organizationId: number = 0;
+  firstTeamNumber: number = 1;
   selectedVenues: Venue[] = [];
   teamCaptains: string[] = [];
 
@@ -59,6 +60,7 @@ export class EditTeamsComponent implements OnChanges {
   private setAvailablePlayersAndTeams(organizationSetup: OrganizationSetup) {
     this.availablePlayers = organizationSetup.availablePlayers;
     this.teams = organizationSetup.teams;
+    this.firstTeamNumber = organizationSetup.firstTeamNumber;
     this.teamCaptains = organizationSetup.teams.map(team => team.captainUsername!);
     this.selectedVenues = organizationSetup.teams
       .map(team => this.venues.filter(venue => venue.id == team.venueId))
@@ -87,7 +89,7 @@ export class EditTeamsComponent implements OnChanges {
   addNewTeam() {
     this.teams.push({
       organizationId: this.organizationId,
-      number: this.teams.length +1,
+      number: this.teams.length + (this.firstTeamNumber ?? 1),
       participants: []
     })
   }

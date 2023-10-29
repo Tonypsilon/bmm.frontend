@@ -31,6 +31,10 @@ export class CreateOrganizationComponent implements OnInit {
       nonNullable: true,
       validators: Validators.required
     }),
+    numberSuperregionalTeams: new FormControl<number|null>(0, {
+      nonNullable: true,
+      validators: Validators.required
+    }),
     isGroup: new FormControl<boolean>(false, {
       nonNullable: true,
       validators: Validators.required
@@ -68,6 +72,7 @@ export class CreateOrganizationComponent implements OnInit {
             const newOrganization: Organization = {
               seasonId: formValue.season!.id,
               name: result.name,
+              firstTeamNumber: (formValue.numberSuperregionalTeams ?? 0) +1,
               clubIds: clubIds
             }
             this.postOrganization(newOrganization);
@@ -77,6 +82,7 @@ export class CreateOrganizationComponent implements OnInit {
         const newOrganization: Organization = {
           seasonId: formValue.season.id,
           name: formValue.club.label,
+          firstTeamNumber: (formValue.numberSuperregionalTeams ?? 0) +1,
           clubIds: [formValue.club.id]
         }
         this.postOrganization(newOrganization);

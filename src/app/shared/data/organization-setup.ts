@@ -5,5 +5,6 @@ import {IdAndLabel} from "./id-and-label";
 export interface OrganizationSetup {
   availablePlayers: ParticipationEligibility[];
   teams: Team[];
-  availableVenues: IdAndLabel[]
+  availableVenues: IdAndLabel[];
+  firstTeamNumber: number;
 }

@@ -3,7 +3,7 @@
     <mat-card-title>Zu Saison anmelden</mat-card-title>
   </mat-card-header>
   <form [formGroup]="form" (ngSubmit)="submitForm()">
-  <mat-card-content>
+    <mat-card-content>
 
       <mat-form-field>
         <mat-label>Verein</mat-label>
@@ -17,11 +17,15 @@
           <mat-option *ngFor="let s of seasons" [value]="s">{{ s.label }}</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field>
+        <mat-label>Überregionale Mannschaften</mat-label>
+        <input matInput formControlName="numberSuperregionalTeams" type="number">
+      </mat-form-field>
       <mat-checkbox formControlName="isGroup" style="margin-right:8px">Spielgemeinschaft</mat-checkbox>
 
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-stroked-button type="submit">Anmelden</button>
-  </mat-card-actions>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button type="submit">Anmelden</button>
+    </mat-card-actions>
   </form>
 </mat-card>

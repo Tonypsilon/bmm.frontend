@@ -40,10 +40,10 @@
           <mat-card-title>Mannschaften</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <mat-card *ngFor="let team of teams index as i"
+          <mat-card *ngFor="let team of teams"
           style="margin-bottom: 15px">
             <mat-card-header>
-              <mat-card-title>{{i +1}}. Mannschaft</mat-card-title>
+              <mat-card-title>{{team.number}}. Mannschaft</mat-card-title>
             </mat-card-header>
             <mat-card-content>
               <div cdkDropList
@@ -52,11 +52,11 @@
               (cdkDropListDropped)="drop($event)">
                 <div *ngFor="let player of team.participants index as j" cdkDrag
                 class="bmm-drop-list-box">
-                  {{ i+1 }}<ng-container *ngIf="j+1<10">0</ng-container>{{ j+1 }}
+                  {{ team.number }}<ng-container *ngIf="j+1<10">0</ng-container>{{ j+1 }}
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   {{ player.surname}}, {{player.forename}} <span class="spacer"></span>
                   <ng-container *ngIf="player.dwz">{{ player.dwz }}</ng-container>
-                  <button mat-icon-button (click)="moveToAvailablePlayers(i, j)" color="warn">
+                  <button mat-icon-button (click)="moveToAvailablePlayers(team.number, j)" color="warn">
                     <mat-icon>delete</mat-icon></button>
                 </div>
               </div>
