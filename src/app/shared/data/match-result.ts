@@ -8,4 +8,6 @@ export interface MatchResult {
   awayTeamLabel: string;
   state: string;
   games: Game[];
+  homeTeamResultLabel: string;
+  awayTeamResultLabel: string;
 }
