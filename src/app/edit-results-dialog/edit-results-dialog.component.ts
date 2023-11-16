@@ -11,35 +11,35 @@ import {Result} from "../shared/data/result";
 export class EditResultsDialogComponent {
   possibleResults: Result[] = [
     {
-      label: '?:?'
+      label: '? : ?'
     },
     {
-      label: '1:0',
+      label: '1 : 0',
       doubledHomePoints: 2,
       doubledAwayPoints: 0
     },
     {
-      label: '0:1',
+      label: '0 : 1',
       doubledHomePoints: 0,
       doubledAwayPoints: 2
     },
     {
-      label: '½:½',
+      label: '½ : ½',
       doubledHomePoints: 1,
       doubledAwayPoints: 1
     },
     {
-      label: '+:-',
+      label: '+ : -',
       doubledHomePoints: 2,
       doubledAwayPoints: 0
     },
     {
-      label: '-:+',
+      label: '- : +',
       doubledHomePoints: 0,
       doubledAwayPoints: 2
     },
     {
-      label: '-:-',
+      label: '- : -',
       doubledHomePoints: 0,
       doubledAwayPoints: 0
     }
