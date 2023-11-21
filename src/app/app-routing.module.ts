@@ -20,6 +20,8 @@ import {SeasonComponent} from "./season/season.component";
 import {DivisionComponent} from "./division/division.component";
 
 const routes: Routes = [
+  //{path: '', redirectTo: 'home'},
+  {path: '',   redirectTo: '/home', pathMatch: 'full' },
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'admin/home', component: AdminHomeComponent, canActivate: [loggedInGuard]},
@@ -32,8 +34,8 @@ const routes: Routes = [
   {path: 'admin/create-organization', component: CreateOrganizationComponent},
   {path: 'admin/clubs/:clubId/venues', component: VenueManagementFormComponent},
   {path: 'admin/organizations/:organizationId/teams', component: EditTeamsComponent},
-  {path: 'admin/seasons/:seasonId/teamdivisionlinks', component: EditTeamDivisionLinksComponent},
-  {path: 'admin/organizations/:organizationId/teamadmins', component: CreateTeamAdminComponent},
+  {path: 'admin/seasons/:seamdivisionlinks', component: EditTeamDivisionLinksComponent},
+  {path: 'admin/organizations/:orgaeasonId/tnizationId/teamadmins', component: CreateTeamAdminComponent},
   {path: 'admin/matches/:matchId/games', component: EditResultsComponent},
   {path: 'seasons/:seasonName/divisions/:divisionId', component: DivisionComponent},
   {path: 'seasons/:seasonName', component: SeasonComponent}
