@@ -1,70 +1,80 @@
 <div>
-  <mat-accordion multi>
-    <mat-expansion-panel *ngFor="let md of divisionResults?.matchdays">
-      <mat-expansion-panel-header>
-        <mat-panel-title>Runde {{ md.round }}</mat-panel-title>
-        <mat-panel-description>{{ md.date }}</mat-panel-description>
-      </mat-expansion-panel-header>
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Ergebnisse">
       <mat-accordion multi>
-        <mat-expansion-panel *ngFor="let m of md.matches">
+        <mat-expansion-panel *ngFor="let md of divisionResults?.matchdays">
           <mat-expansion-panel-header>
-            <mat-panel-title class="bmm-wide-title">{{m.homeTeamLabel}} : {{m.awayTeamLabel}}</mat-panel-title>
-            <mat-panel-description>{{m.homeTeamResultLabel}} : {{m.awayTeamResultLabel}}</mat-panel-description>
+            <mat-panel-title>Runde {{ md.round }}</mat-panel-title>
+            <mat-panel-description>{{ md.date }}</mat-panel-description>
           </mat-expansion-panel-header>
-          <table mat-table [dataSource]="m.games">
-            <!-- Board number column -->
-            <ng-container matColumnDef="num">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element index as i">{{i+1}}</td>
-              <td mat-footer-cell *matFooterCellDef> </td>
-            </ng-container>
+          <mat-accordion multi>
+            <mat-expansion-panel *ngFor="let m of md.matches">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="bmm-wide-title">{{m.homeTeamLabel}} : {{m.awayTeamLabel}}</mat-panel-title>
+                <mat-panel-description>{{m.homeTeamResultLabel}} : {{m.awayTeamResultLabel}}</mat-panel-description>
+              </mat-expansion-panel-header>
+              <table mat-table [dataSource]="m.games">
+                <!-- Board number column -->
+                <ng-container matColumnDef="num">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element index as i">{{i+1}}</td>
+                  <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
 
-            <!-- Home player code column -->
-            <ng-container matColumnDef="homeCode">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let game">{{game.homeParticipant.code}}</td>
-            </ng-container>
+                <!-- Home player code column -->
+                <ng-container matColumnDef="homeCode">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let game">{{game.homeParticipant.code}}</td>
+                </ng-container>
 
-            <!-- Home player column -->
-            <ng-container matColumnDef="homeParticipant">
-              <th mat-header-cell *matHeaderCellDef>Heim</th>
-              <td mat-cell *matCellDef="let game">
-                {{game.homeParticipant.surname}}, {{game.homeParticipant.forename}}
-                <ng-container *ngIf="game.homeParticipant.dwz">({{game.homeParticipant.dwz}})</ng-container>
-              </td>
-            </ng-container>
+                <!-- Home player column -->
+                <ng-container matColumnDef="homeParticipant">
+                  <th mat-header-cell *matHeaderCellDef>Heim</th>
+                  <td mat-cell *matCellDef="let game">
+                    {{game.homeParticipant.surname}}, {{game.homeParticipant.forename}}
+                    <ng-container *ngIf="game.homeParticipant.dwz">({{game.homeParticipant.dwz}})</ng-container>
+                  </td>
+                </ng-container>
 
-            <!-- Result column -->
-            <ng-container matColumnDef="result">
-              <th mat-header-cell *matHeaderCellDef>Ergebnis</th>
-              <td mat-cell *matCellDef="let game">
-                {{game.result.label}}</td>
-              <td mat-footer-cell *matFooterCellDef><b>{{m.homeTeamResultLabel}} : {{m.awayTeamResultLabel}}</b></td>
-            </ng-container>
+                <!-- Result column -->
+                <ng-container matColumnDef="result">
+                  <th mat-header-cell *matHeaderCellDef>Ergebnis</th>
+                  <td mat-cell *matCellDef="let game">
+                    {{game.result.label}}</td>
+                  <td mat-footer-cell *matFooterCellDef><b>{{m.homeTeamResultLabel}} : {{m.awayTeamResultLabel}}</b></td>
+                </ng-container>
 
-            <!-- Away player column -->
-            <ng-container matColumnDef="awayParticipant">
-              <th mat-header-cell *matHeaderCellDef>Gast</th>
-              <td mat-cell *matCellDef="let game">
-                {{game.awayParticipant.surname}}, {{game.awayParticipant.forename}}
-                <ng-container *ngIf="game.awayParticipant.dwz">({{game.awayParticipant.dwz}})</ng-container>
-              </td>
-            </ng-container>
+                <!-- Away player column -->
+                <ng-container matColumnDef="awayParticipant">
+                  <th mat-header-cell *matHeaderCellDef>Gast</th>
+                  <td mat-cell *matCellDef="let game">
+                    {{game.awayParticipant.surname}}, {{game.awayParticipant.forename}}
+                    <ng-container *ngIf="game.awayParticipant.dwz">({{game.awayParticipant.dwz}})</ng-container>
+                  </td>
+                </ng-container>
 
-            <!-- Away player code column -->
-            <ng-container matColumnDef="awayCode">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let game">{{game.awayParticipant.code}}</td>
-            </ng-container>
+                <!-- Away player code column -->
+                <ng-container matColumnDef="awayCode">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let game">{{game.awayParticipant.code}}</td>
+                </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef=
-              "['num', 'homeCode', 'homeParticipant', 'result', 'awayParticipant', 'awayCode', 'num']"></tr>
-            <tr mat-row *matRowDef="let row; columns: ['num', 'homeCode', 'homeParticipant', 'result', 'awayParticipant', 'awayCode', 'num'];"></tr>
-            <tr mat-footer-row *matFooterRowDef="['num', 'num', 'num', 'result', 'num', 'num', 'num', 'num']"></tr>
-          </table>
-          <b>Spielort: </b>{{m.venueLabel}} - <b>Schiedsrichter: </b>{{m.refereeLabel}}
+                <tr mat-header-row *matHeaderRowDef=
+                  "['num', 'homeCode', 'homeParticipant', 'result', 'awayParticipant', 'awayCode', 'num']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['num', 'homeCode', 'homeParticipant', 'result', 'awayParticipant', 'awayCode', 'num'];"></tr>
+                <tr mat-footer-row *matFooterRowDef="['num', 'num', 'num', 'result', 'num', 'num', 'num', 'num']"></tr>
+              </table>
+              <b>Spielort: </b>{{m.venueLabel}} - <b>Schiedsrichter: </b>{{m.refereeLabel}}
+            </mat-expansion-panel>
+          </mat-accordion>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </mat-tab>
+    <mat-tab label="Kreuztabelle">
+
+    </mat-tab>
+    <mat-tab label="Fortschrittstabelle">
+
+    </mat-tab>
+  </mat-tab-group>
 </div>

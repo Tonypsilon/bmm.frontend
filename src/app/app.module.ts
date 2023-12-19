@@ -71,6 +71,7 @@ import { SeasonComponent } from './season/season.component';
 import { DivisionComponent } from './division/division.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -148,7 +149,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
         MatListModule,
         MatTableModule,
         MatSidenavModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatTabsModule
     ],
   providers: [
     {
