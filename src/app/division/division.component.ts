@@ -14,6 +14,7 @@ export class DivisionComponent implements OnChanges{
   @Input() division?: Division;
   divisionResults?: DivisionResults;
   standings?: DivisionStandings;
+  displayedStandingsColumns: string[] = [];
 
   constructor(private divisionService: DivisionService,
               private standingsService: StandingsService) {
@@ -28,7 +29,14 @@ export class DivisionComponent implements OnChanges{
       this.divisionService.getDivisionResults(this.division.id!)
         .subscribe(divisionResults => this.divisionResults = divisionResults);
       this.standingsService.getDivisionStandings(this.division.id!)
-        .subscribe(divisionStandings => this.standings = divisionStandings);
+        .subscribe(divisionStandings => {
+          this.standings = divisionStandings;
+          this.displayedStandingsColumns = ['num', 'team'];
+          for(let i=1; i<=divisionStandings.rows.length; i++) {
+            this.displayedStandingsColumns.push('team' + i);
+          }
+          this.displayedStandingsColumns.push('mp','bp');
+        });
     }
   }
 }

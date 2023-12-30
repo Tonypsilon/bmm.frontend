@@ -71,7 +71,43 @@
       </mat-accordion>
     </mat-tab>
     <mat-tab label="Kreuztabelle">
-      <pre>{{ standings | json }}</pre>
+      <table mat-table *ngIf="standings" [dataSource]="standings.rows">
+        <!-- Position column -->
+        <ng-container matColumnDef="num">
+          <th mat-header-cell *matHeaderCellDef>Platz</th>
+          <td mat-cell *matCellDef="let element index as i">{{i+1}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <!-- Team name column -->
+        <ng-container matColumnDef="team">
+          <th mat-header-cell *matHeaderCellDef>Mannschaft</th>
+          <td mat-cell *matCellDef="let row">{{row.team.label}}</td>
+        </ng-container>
+
+        <!-- Result columns -->
+        <ng-container *ngFor="let row of standings.rows index as i">
+          <ng-container matColumnDef="team{{i + 1}}">
+            <th mat-header-cell *matHeaderCellDef>{{ i+1 }}</th>
+            <td mat-cell *matCellDef="let row">{{row.results[i].label}}</td>
+          </ng-container>
+        </ng-container>
+
+        <!-- Team name column -->
+        <ng-container matColumnDef="mp">
+          <th mat-header-cell *matHeaderCellDef>MP</th>
+          <td mat-cell *matCellDef="let row">{{row.teamPoints}}</td>
+        </ng-container>
+
+        <!-- Team name column -->
+        <ng-container matColumnDef="bp">
+          <th mat-header-cell *matHeaderCellDef>BP</th>
+          <td mat-cell *matCellDef="let row">{{row.boardPoints}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef=displayedStandingsColumns></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedStandingsColumns;"></tr>
+      </table>
     </mat-tab>
     <mat-tab label="Fortschrittstabelle">
 
