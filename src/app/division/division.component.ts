@@ -4,6 +4,7 @@ import {DivisionResults} from "../shared/data/division-results";
 import {DivisionService} from "../shared/division.service";
 import {DivisionStandings} from "../shared/data/division-standings";
 import {StandingsService} from "../shared/standings.service";
+import {ProgressChartService} from "../shared/progress-chart.service";
 
 @Component({
   selector: 'bmm-division',
@@ -17,7 +18,8 @@ export class DivisionComponent implements OnChanges{
   displayedStandingsColumns: string[] = [];
 
   constructor(private divisionService: DivisionService,
-              private standingsService: StandingsService) {
+              private standingsService: StandingsService,
+              private progressChartService: ProgressChartService) {
   }
 
   ngOnChanges(changes: SimpleChanges) {

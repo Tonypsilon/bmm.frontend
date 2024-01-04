@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
-import {DivisionStandings} from "./data/division-standings";
+import {DivisionProgressChart} from "./data/division-progress-chart";
 
 @Injectable({
   providedIn: 'root'
 })
-export class StandingsService {
+export class ProgressChartService {
 
   private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
-  getDivisionStandings(divisionId: number): Observable<DivisionStandings> {
-    return this.http.get<DivisionStandings>(
-      this.apiUrl + '/divisions/' + divisionId + '/standings');
+  getDivisionProgressChart(divisionId: number): Observable<DivisionProgressChart> {
+    return this.http.get<DivisionProgressChart>(
+      this.apiUrl + '/divisions/' + divisionId + '/progress');
   }
 }
