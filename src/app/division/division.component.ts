@@ -5,6 +5,7 @@ import {DivisionService} from "../shared/division.service";
 import {DivisionStandings} from "../shared/data/division-standings";
 import {StandingsService} from "../shared/standings.service";
 import {ProgressChartService} from "../shared/progress-chart.service";
+import {DivisionProgressChart} from "../shared/data/division-progress-chart";
 
 @Component({
   selector: 'bmm-division',
@@ -16,6 +17,9 @@ export class DivisionComponent implements OnChanges{
   divisionResults?: DivisionResults;
   standings?: DivisionStandings;
   displayedStandingsColumns: string[] = [];
+  progressChart?: DivisionProgressChart;
+  displayedProgressChartColumns: string[] = [];
+  rounds: number[] = [];
 
   constructor(private divisionService: DivisionService,
               private standingsService: StandingsService,
@@ -39,6 +43,16 @@ export class DivisionComponent implements OnChanges{
           }
           this.displayedStandingsColumns.push('mp','bp');
         });
+      this.progressChartService.getDivisionProgressChart(this.division.id!)
+        .subscribe(divisionProgressChart => {
+          this.progressChart = divisionProgressChart;
+          this.displayedProgressChartColumns = ['code', 'name'];
+          for(let i=1; i<= divisionProgressChart.numberOfRounds; i++) {
+            this.displayedProgressChartColumns.push('r' + i);
+          }
+        });
     }
   }
+
+  protected readonly Array = Array;
 }

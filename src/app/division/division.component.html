@@ -109,8 +109,41 @@
         <tr mat-row *matRowDef="let row; columns: displayedStandingsColumns;"></tr>
       </table>
     </mat-tab>
-    <mat-tab label="Fortschrittstabelle">
+    <mat-tab *ngIf="progressChart" label="Fortschrittstabelle">
+      <mat-accordion multi>
+        <mat-expansion-panel *ngFor="let team of progressChart?.teamProgressCharts">
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ team.team.label }}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table *ngIf="team" [dataSource]="team.participantProgressCharts">
+            <!-- Code column -->
+            <ng-container matColumnDef="code">
+              <th mat-header-cell *matHeaderCellDef>Code</th>
+              <td mat-cell *matCellDef="let p">{{ p.participant.code }}</td>
+            </ng-container>
 
+            <!-- Team name column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let p">
+                {{p.participant.forename}} {{p.participant.surname}}
+                <ng-container *ngIf="p.participant.dwz">({{p.participant.dwz}})</ng-container>
+              </td>
+            </ng-container>
+
+            <!-- Result columns -->
+            <ng-container *ngFor="let x of Array(progressChart.numberOfRounds) index as i">
+              <ng-container matColumnDef="r{{i + 1}}">
+                <th mat-header-cell *matHeaderCellDef>{{ i+1 }}</th>
+                <td mat-cell *matCellDef="let p">{{ p.results[i].label }}</td>
+              </ng-container>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef=displayedProgressChartColumns></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedProgressChartColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
     </mat-tab>
   </mat-tab-group>
 </div>
