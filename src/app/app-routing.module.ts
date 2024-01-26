@@ -20,6 +20,7 @@ import {SeasonComponent} from "./season/season.component";
 import {DivisionComponent} from "./division/division.component";
 
 const routes: Routes = [
+  {path: '',   redirectTo: '/home', pathMatch: 'full' },
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'admin/home', component: AdminHomeComponent, canActivate: [loggedInGuard]},
