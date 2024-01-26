@@ -72,6 +72,7 @@ import { DivisionComponent } from './division/division.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatTabsModule} from "@angular/material/tabs";
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -118,7 +119,8 @@ import {MatTabsModule} from "@angular/material/tabs";
     EditResultsComponent,
     EditResultsDialogComponent,
     SeasonComponent,
-    DivisionComponent
+    DivisionComponent,
+    ConfirmationDialogComponent
   ],
     imports: [
         BrowserModule,
