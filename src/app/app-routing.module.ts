@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
-import { SeasonCreateComponent } from './season/admin/season-create/season-create.component';
-import { loggedInGuard } from './logged-in.guard';
-import { UserCreateComponent } from './user/admin/user-create/user-create.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from './login/login.component';
+import {HomeComponent} from './home/home.component';
+import {AdminHomeComponent} from './admin/admin-home/admin-home.component';
+import {SeasonCreateComponent} from './season/admin/season-create/season-create.component';
+import {loggedInGuard} from './logged-in.guard';
+import {UserCreateComponent} from './user/admin/user-create/user-create.component';
 import {ChangePasswordComponent} from "./user/admin/change-password/change-password.component";
 import {SeasonAdminCreateComponent} from "./user/admin/season-admin-create/season-admin-create.component";
 import {ClubCreateComponent} from "./club/admin/club-create/club-create.component";
@@ -18,6 +18,7 @@ import {CreateTeamAdminComponent} from "./create-team-admin/create-team-admin.co
 import {EditResultsComponent} from "./edit-results/edit-results.component";
 import {SeasonComponent} from "./season/season.component";
 import {DivisionComponent} from "./division/division.component";
+import {ParticipantResultsComponent} from "./participant-results/participant-results.component";
 
 const routes: Routes = [
   {path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: 'admin/organizations/:organizationId/teamadmins', component: CreateTeamAdminComponent},
   {path: 'admin/matches/:matchId/games', component: EditResultsComponent},
   {path: 'seasons/:seasonName/divisions/:divisionId', component: DivisionComponent},
-  {path: 'seasons/:seasonName', component: SeasonComponent}
+  {path: 'seasons/:seasonName', component: SeasonComponent},
+  {path: 'participants/:participantId/results', component: ParticipantResultsComponent}
 ];
 
 @NgModule({

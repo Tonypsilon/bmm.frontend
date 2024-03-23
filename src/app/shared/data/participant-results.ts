@@ -8,5 +8,5 @@ export interface ParticipantResults {
   results: ParticipantResult[];
   performance: string;
   ratingChange: string;
-  seasonId: number;
+  seasonName: string;
 }

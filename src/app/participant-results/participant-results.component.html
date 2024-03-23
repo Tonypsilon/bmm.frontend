@@ -1,0 +1,29 @@
+<mat-drawer-container [hasBackdrop]="false" autosize>
+  <mat-drawer #drawer [mode]="'side'" opened>
+    <mat-list>
+      <ng-container *ngFor="let d of divisions index as i">
+        <mat-divider *ngIf="i>0 && divisions.at(i-1)!.level < divisions.at(i)!.level"></mat-divider>
+        <button mat-flat-button style="margin: 4px"
+                (click)="setDivision(d)">{{d.name}}</button>
+        <br>
+      </ng-container>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div style="margin: 6px; min-height: calc(100vh - 80px)">
+      <h1>
+        <button style="margin: 2px" mat-icon-button (click)="drawer.open()" *ngIf="!drawer.opened"
+                matTooltip="Staffeln anzeigen">
+          <mat-icon style="vertical-align: text-top">chevron_right</mat-icon>
+        </button>
+        <button style="margin: 2px" mat-icon-button (click)="drawer.close()" *ngIf="drawer.opened"
+                matTooltip="Staffeln ausblenden">
+          <mat-icon style="vertical-align: text-top">chevron_left</mat-icon>
+        </button>
+        {{participantResults ? participantResults.name : 'Einzelergebnisse'}} - {{participantResults ? participantResults.team.label : 'Mannschaft'}}</h1>
+      <div *ngIf="participantResults">
+        participant results works!
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

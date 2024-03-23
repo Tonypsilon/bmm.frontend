@@ -28,15 +28,18 @@ export class SeasonComponent implements OnChanges {
 
   setupData() {
     this.route.paramMap.pipe(map(params => params.get('seasonName')!),
-        switchMap(sName => this.seasonService.getSeasonByName(sName)))
-        .subscribe(s => {
-          this.season = s;
-          this.divisionService.getBySeason(s.name).subscribe(ds => {
-            this.divisions = ds;
+      switchMap(sName => this.seasonService.getSeasonByName(sName)))
+      .subscribe(s => {
+        this.season = s;
+        this.divisionService.getBySeason(s.name).subscribe(ds => {
+          this.divisions = ds;
+          if (this.route.snapshot.paramMap.get('divisionId') && ds.some(d => d.id === parseInt(this.route.snapshot.paramMap.get('divisionId')!))) {
+            this.division = ds.filter(d => d.id === parseInt(this.route.snapshot.paramMap.get('divisionId')!))[0];
+          } else {
             this.division = ds.at(0);
-          })
-        });
-
+          }
+        })
+      });
   }
 
   setDivision(division: Division) {

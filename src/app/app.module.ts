@@ -73,6 +73,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatTabsModule} from "@angular/material/tabs";
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ParticipantResultsComponent } from './participant-results/participant-results.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     EditResultsDialogComponent,
     SeasonComponent,
     DivisionComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ParticipantResultsComponent
   ],
     imports: [
         BrowserModule,
